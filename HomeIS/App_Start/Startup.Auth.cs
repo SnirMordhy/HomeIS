@@ -54,9 +54,9 @@ namespace HomeIS
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1952650968362836",
+               appSecret: "7814d2beda056f9fe132ab6dd5f6f016");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
