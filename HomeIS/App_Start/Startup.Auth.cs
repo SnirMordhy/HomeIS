@@ -51,18 +51,18 @@ namespace HomeIS
             //    clientSecret: "");
 
             //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            //   consumerKey: "BlJbapoPtXeEFhedpPolZl2Ki",
+             //  consumerSecret: "QpNPJOHfcyYWrpPup344iZXpJoAksOpp9SkNi8gqliNct6CxWE");
 
             app.UseFacebookAuthentication(
                appId: "1952650968362836",
                appSecret: "7814d2beda056f9fe132ab6dd5f6f016");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "268538833468-q2mepdqaorsnmo620bnt794ivp8oui34.apps.googleusercontent.com",
+                ClientSecret = "Ha6LPh0vryj-kPbIlBNb4ny7"
+            });
         }
     }
 }
