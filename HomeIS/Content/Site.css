@@ -40,3 +40,26 @@ color: #ffffff;
 .checkbox > label{
     padding: 0;
 }
+
+.thumbnail-caption-header {
+    margin-top: 2px;
+    text-align: center;
+}
+
+.thumbnail{
+    padding:0;
+}
+
+.badge {
+    background-color: #3a84df;
+}
+
+.page-header {
+    text-align: center;
+}
+
+.page-header > h1 {
+    color: #337ab7;
+    font-size: 45px;
+    font-weight: 700;
+}
