@@ -36,3 +36,7 @@ color: #ffffff;
     color: #85b7e2;
     background-color: transparent;
 }
+
+.checkbox > label{
+    padding: 0;
+}
