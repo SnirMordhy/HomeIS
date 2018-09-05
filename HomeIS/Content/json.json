@@ -3,7 +3,7 @@
     "ID": "123",
     "location": {
       "city": "Tel Aviv",
-      "neigborhood": "Ramat Aviv",
+      "neighborhood": "Ramat Aviv",
       "address":  "טאגור 43 תל אביב"
     },
     "seller": "456",

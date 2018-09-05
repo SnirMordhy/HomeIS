@@ -2,7 +2,7 @@
 
     $.getJSON('../content/json.json', function (data) {
 
-        windows.appartments = data;
+        window.appartments = data;
         updateAppartmentList(data);
 
     });
@@ -17,7 +17,7 @@ function updateAppartmentList(data)
 
                 '<div class="col-sm-6 col-md-4">'
                 + '<div class="thumbnail">'
-                + '    <img alt="100%x200" src="' + appartment.photo + '" style="height: 200px; width: 100%; display: block;">'
+                + '    <a href="#"><img class="appartment-image" alt="" src="' + appartment.photo + '" style="height: 200px; width: 100%; display: block;"></a>'
                 + '        <div class="caption ">'
                 + '            <h4 class="thumbnail-caption-header">' + appartment.location.city + ', <small>' + appartment.location.neighborhood + '</small></h4>'
                 + '            <div class="row">'
@@ -52,5 +52,8 @@ function updateAppartmentList(data)
 
             );
 
-        });
+    });
+
+    $('.appartment-image').click(function () { $('#appartment-modal').modal('toggle') });
+
 }
