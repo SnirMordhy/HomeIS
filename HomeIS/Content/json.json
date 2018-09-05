@@ -1,0 +1,47 @@
+[
+  {
+    "ID": "123",
+    "location": {
+      "city": "Tel Aviv",
+      "neigborhood": "Ramat Aviv",
+      "address":  "טאגור 43 תל אביב"
+    },
+    "seller": "456",
+    "price": "100",
+    "numberOfRooms": "5",
+    "size": "120",
+    "balcony": "Yes",
+    "floorNumber": "5",
+    "photo": "https://odis.homeaway.com/odis/listing/d17b0431-6fee-4cc5-a1fe-c939da6d5516.c10.jpg"
+  },
+  {
+    "ID": "123",
+    "location": {
+      "city": "Tel Aviv",
+      "neigborhood": "Ramat Aviv",
+      "address": "טאגור 43 תל אביב"
+    },
+    "seller": "456",
+    "price": "100",
+    "numberOfRooms": "5",
+    "size": "120",
+    "balcony": "Yes",
+    "floorNumber": "5",
+    "photo": "https://odis.homeaway.com/odis/listing/d17b0431-6fee-4cc5-a1fe-c939da6d5516.c10.jpg"
+  },
+  {
+    "ID": "123",
+    "location": {
+      "city": "Tel Aviv",
+      "neigborhood": "Ramat Aviv",
+      "address": "טאגור 43 תל אביב"
+    },
+    "seller": "456",
+    "price": "100",
+    "numberOfRooms": "5",
+    "size": "120",
+    "balcony": "Yes",
+    "floorNumber": "5",
+    "photo": "https://odis.homeaway.com/odis/listing/d17b0431-6fee-4cc5-a1fe-c939da6d5516.c10.jpg"
+  }
+]
