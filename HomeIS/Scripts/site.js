@@ -2,6 +2,7 @@
 
     $.getJSON('../content/json.json', function (data) {
 
+        windows.appartments = data;
         updateAppartmentList(data);
 
     });
