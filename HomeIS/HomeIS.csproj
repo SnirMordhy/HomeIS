@@ -223,6 +223,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrapsocial.css" />
+    <Content Include="Content\Images\israel_ico.png" />
+    <Content Include="Content\Images\japan_ico.png" />
+    <Content Include="Content\Images\united-kigdoms_ico.png" />
+    <Content Include="Content\Images\unites-states_ico.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fa-brands-400.svg" />
     <Content Include="fonts\fa-regular-400.svg" />
@@ -249,6 +253,7 @@
     <Content Include="fonts\fa-solid-900.woff2" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Content\fontawesome.css" />
+    <Content Include="Scripts\coins-exchange-service.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -298,6 +303,7 @@
     <Content Include="Views\Apartments\Details.cshtml" />
     <Content Include="Views\Apartments\Edit.cshtml" />
     <Content Include="Views\Apartments\Index.cshtml" />
+    <Content Include="Views\Home\CoinsExchange.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
