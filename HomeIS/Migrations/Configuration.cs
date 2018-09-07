@@ -25,7 +25,7 @@
                     FloorNumber = 8,
                     Images = new string[]{"https://lonelyplanetimages.imgix.net/a/g/hi/t/8ec64b64e1d0805b1101f6c70c7f5b31-tel-aviv.jpg?sharp=10&vib=20&w=1200",
                                 "https://cdn.businesstraveller.com/wp-content/uploads/fly-images/879585/Tel-Aviv-916x515.jpg" },
-                    Location = new Location {City = "תל אביב", Neighburhood = "רמת אביב", Address = "טאגור 43 תל אביב" },
+                    Location = new Location {City = "תל אביב", Neighborhood = "רמת אביב", Address = "טאגור 43 תל אביב" },
                     NumberOfRooms = 6,
                     Owner = context.Users.Single(p => p.Email == "hayitai@gmail.com"),
                     PropertyValue = 500,
@@ -33,7 +33,7 @@
                 } 
             };
 
-            apartments.ForEach(s => context.Apartments.AddOrUpdate(p => p.ID, s));
+            apartments.ForEach(s => context.Apartments.AddOrUpdate(p => p.Description, s));
 
 
         }
