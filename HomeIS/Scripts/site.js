@@ -48,12 +48,10 @@ function updateAppartmentList(data)
                 + '        </div>'
                 + '    </div>'
                 + '</div>'
-         
-
             );
 
     });
 
-    $('.appartment-image').click(function () { $('#appartment-modal').modal('toggle') });
+    $('.appartment-image').click(function () { $('#appartment-modal').modal('toggle')});
 
 }
