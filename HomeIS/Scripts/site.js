@@ -17,7 +17,7 @@
 
 function updateApartmentList(data)
 {
-        $.each(data.apartments, function (index,apartment) {
+        $.each(data, function (index,apartment) {
 
             $('#apartment-grid').append(
 
