@@ -209,6 +209,10 @@
     <Compile Include="Migrations\201808312118008_Aprtmet.Designer.cs">
       <DependentUpon>201808312118008_Aprtmet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809070629425_apartment.cs" />
+    <Compile Include="Migrations\201809070629425_apartment.Designer.cs">
+      <DependentUpon>201809070629425_apartment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Apartment.cs" />
@@ -247,6 +251,7 @@
     <Content Include="fonts\fa-solid-900.ttf" />
     <Content Include="fonts\fa-solid-900.woff" />
     <Content Include="fonts\fa-solid-900.woff2" />
+    <Content Include="Content\json.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Content\fontawesome.css" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -259,6 +264,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\site.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -321,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808312118008_Aprtmet.resx">
       <DependentUpon>201808312118008_Aprtmet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809070629425_apartment.resx">
+      <DependentUpon>201809070629425_apartment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

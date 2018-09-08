@@ -123,5 +123,13 @@ namespace HomeIS.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public JsonResult AllApartmentsJSON()
+        {
+            var appartments = db.Apartments.ToList();
+            var obj = new { Appartments = appartments };
+
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
     }
 }
