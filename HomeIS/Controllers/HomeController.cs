@@ -26,5 +26,10 @@ namespace HomeIS.Controllers
 
             return View();
         }
+
+        public ActionResult CoinsExchange()
+        {
+            return View();
+        }
     }
 }

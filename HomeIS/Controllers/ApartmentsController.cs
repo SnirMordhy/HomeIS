@@ -127,9 +127,7 @@ namespace HomeIS.Controllers
         public JsonResult AllApartmentsJSON()
         {
             var apartments = db.Apartments.ToList();
-            var obj = new { apartments = apartments };
-
-            return Json(obj, JsonRequestBehavior.AllowGet);
+            return Json(apartments, JsonRequestBehavior.AllowGet);
         }
     }
 }

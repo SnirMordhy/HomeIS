@@ -213,9 +213,13 @@
     <Compile Include="Migrations\201809070629425_apartment.Designer.cs">
       <DependentUpon>201809070629425_apartment.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809080943254_apartment1.cs" />
-    <Compile Include="Migrations\201809080943254_apartment1.Designer.cs">
-      <DependentUpon>201809080943254_apartment1.cs</DependentUpon>
+    <Compile Include="Migrations\201809070727551_apartment1.cs" />
+    <Compile Include="Migrations\201809070727551_apartment1.Designer.cs">
+      <DependentUpon>201809070727551_apartment1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809081023330_apartment2.cs" />
+    <Compile Include="Migrations\201809081023330_apartment2.Designer.cs">
+      <DependentUpon>201809081023330_apartment2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -232,6 +236,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrapsocial.css" />
+    <Content Include="Content\Images\israel_ico.png" />
+    <Content Include="Content\Images\japan_ico.png" />
+    <Content Include="Content\Images\united-kigdoms_ico.png" />
+    <Content Include="Content\Images\unites-states_ico.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fa-brands-400.svg" />
     <Content Include="fonts\fa-regular-400.svg" />
@@ -259,6 +267,7 @@
     <Content Include="Content\json.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Content\fontawesome.css" />
+    <Content Include="Scripts\coins-exchange-service.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -309,6 +318,7 @@
     <Content Include="Views\Apartments\Details.cshtml" />
     <Content Include="Views\Apartments\Edit.cshtml" />
     <Content Include="Views\Apartments\Index.cshtml" />
+    <Content Include="Views\Home\CoinsExchange.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -336,8 +346,13 @@
     <EmbeddedResource Include="Migrations\201809070629425_apartment.resx">
       <DependentUpon>201809070629425_apartment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809080943254_apartment1.resx">
-      <DependentUpon>201809080943254_apartment1.cs</DependentUpon>
+
+    <EmbeddedResource Include="Migrations\201809070727551_apartment1.resx">
+      <DependentUpon>201809070727551_apartment1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809081023330_apartment2.resx">
+      <DependentUpon>201809081023330_apartment2.cs</DependentUpon>
+
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -16,6 +16,13 @@ namespace HomeIS.Models
         public int Size { get; set; }
         public bool Balcony { get; set; }
         public int FloorNumber { get; set; }
-        public string[] Images { get; set; }
+
+        // Entity Framework can't save an array
+        public List<string> PhotoList { get; set; }
+        public string Photos
+        {
+            get { return string.Join(",", PhotoList); }
+            set { PhotoList = value.Split(',').ToList(); }
+        }
     }
 }
