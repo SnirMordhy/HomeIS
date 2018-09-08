@@ -213,10 +213,15 @@
     <Compile Include="Migrations\201809070629425_apartment.Designer.cs">
       <DependentUpon>201809070629425_apartment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809080943254_apartment1.cs" />
+    <Compile Include="Migrations\201809080943254_apartment1.Designer.cs">
+      <DependentUpon>201809080943254_apartment1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Apartment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Location.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -330,6 +335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809070629425_apartment.resx">
       <DependentUpon>201809070629425_apartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809080943254_apartment1.resx">
+      <DependentUpon>201809080943254_apartment1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
