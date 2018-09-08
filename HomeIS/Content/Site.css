@@ -76,7 +76,7 @@ color: #ffffff;
 }
 
 .carousel-inner > .item {
-
     height: 350px;
-
+    background-size: cover;
+    background-position: center;
 }
