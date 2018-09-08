@@ -2,56 +2,55 @@
 
     $.getJSON('../content/json.json', function (data) {
 
-        window.appartments = data;
-        updateAppartmentList(data);
+        window.apartments = data;
+        updateApartmentList(data);
 
     });
 
 });
 
-function updateAppartmentList(data)
+function updateApartmentList(data)
 {
-        $.each(data, function (index,appartment) {
+        $.each(data, function (index,apartment) {
 
-            $('#appartment-grid').append(
+            $('#apartment-grid').append(
 
                 '<div class="col-sm-6 col-md-4">'
                 + '<div class="thumbnail">'
-                + '    <a href="#"><img class="appartment-image" alt="" src="' + appartment.photo + '" style="height: 200px; width: 100%; display: block;"></a>'
+                + '    <img alt="100%x200" src="' + apartment.photo + '" style="height: 200px; width: 100%; display: block;">'
                 + '        <div class="caption ">'
-                + '            <h4 class="thumbnail-caption-header">' + appartment.location.city + ', <small>' + appartment.location.neighborhood + '</small></h4>'
+                + '            <h4 class="thumbnail-caption-header">' + apartment.location.city + ', <small>' + apartment.location.neighborhood + '</small></h4>'
                 + '            <div class="row">'
                 + '                <div class="col-md-6">'
                 + '                    <ul class="list-group">'
                 + '                        <li class="list-group-item">'
-                + '                            <span class="badge">' + appartment.size + '</span>'
+                + '                            <span class="badge">' + apartment.size + '</span>'
                 + '                            Sqr Meters'
                 + '                        </li>'
                 + '                        <li class="list-group-item">'
-                + '                            <span class="badge">' + appartment.numberOfRooms + '</span>'
+                + '                            <span class="badge">' + apartment.numberOfRooms + '</span>'
                 + '                            # Rooms'
                 + '                        </li>'
                 + '                        <li class="list-group-item">'
-                + '                            <span class="badge">' + appartment.balcony + '</span>'
+                + '                            <span class="badge">' + apartment.balcony + '</span>'
                 + '                            Balcony'
                 + '                        </li>'
                 + '                        <li class="list-group-item">'
-                + '                            <span class="badge">' + appartment.floorNumber + '</span>'
+                + '                            <span class="badge">' + apartment.floorNumber + '</span>'
                 + '                            Floor #'
                 + '                        </li>'
                 + '                    </ul>'
                 + '                </div>'
                 + '                <div class="col-md-6">'
-                + '                    <div style="min-height: 100%"><iframe width="100%" height="100%" src="https://maps.google.com/maps?width=100%&amp;height=100&amp;hl=en&amp;q=' + encodeURIComponent(appartment.location.address) + '+(My%20Business%20Name)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div><br />'
+                + '                    <div style="min-height: 100%"><iframe width="100%" height="100%" src="https://maps.google.com/maps?width=100%&amp;height=100&amp;hl=en&amp;q=' + encodeURIComponent(apartment.location.address) + '+(My%20Business%20Name)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div><br />'
                 + '                </div>'
                 + '            </div>'
                 + '        </div>'
                 + '    </div>'
                 + '</div>'
+         
+
             );
 
-    });
-
-    $('.appartment-image').click(function () { $('#appartment-modal').modal('toggle')});
-
+        });
 }
