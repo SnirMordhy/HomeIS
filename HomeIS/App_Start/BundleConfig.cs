@@ -11,6 +11,10 @@ namespace HomeIS
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js", "~/Scripts/site.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/sitewide").Include( "~/Scripts/site.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/apartment").Include("~/Scripts/apartment.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
