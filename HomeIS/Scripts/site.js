@@ -23,7 +23,7 @@ function updateApartmentList(data)
 
                 '<div class="col-sm-6 col-md-4">'
                 + '<div class="thumbnail">'
-                + '    <img alt="100%x200" src="' + apartment.photo + '" style="height: 200px; width: 100%; display: block;">'
+                + '    <img src="' + apartment.PhotoList[0] + '" style="height: 200px; width: 100%; display: block;">'
                 + '        <div class="caption ">'
                 + '            <h4 class="thumbnail-caption-header">' + apartment.Location.City + ', <small>' + apartment.Location.Neighborhood + '</small></h4>'
                 + '            <div class="row">'
