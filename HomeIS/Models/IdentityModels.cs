@@ -31,5 +31,8 @@ namespace HomeIS.Models
         }
 
         public System.Data.Entity.DbSet<HomeIS.Models.Apartment> Apartments { get; set; }
+
+        object placeHolderVariable;
+        public System.Data.Entity.DbSet<HomeIS.Models.Transaction> Transactions { get; set; }
     }
 }

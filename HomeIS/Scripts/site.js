@@ -20,7 +20,6 @@ function updateApartmentList(data)
         $.each(data, function (index,apartment) {
 
             $('#apartment-grid').append(
-
                 '<div class="col-sm-6 col-md-4">'
                 + '<div class="thumbnail">'
                 + '    <img src="' + apartment.PhotoList[0] + '" style="height: 200px; width: 100%; display: block;">'
@@ -52,6 +51,7 @@ function updateApartmentList(data)
                 + '                </div>'
                 + '            </div>'
                 + '        </div>'
+                + '        <input type="submit" id="buyProperty" class="btn btn-primary" value="!רכוש כעת" />'
                 + '    </div>'
                 + '</div>'
          
