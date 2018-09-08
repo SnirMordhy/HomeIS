@@ -1,13 +1,8 @@
 ﻿@model IEnumerable<HomeIS.Models.Apartment>
-@{
-    if (!Request.IsAuthenticated)
-    {
-        Response.Redirect("/");
-    }
-}
 
 @{
-        ViewBag.Title = "Index";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
@@ -24,31 +19,41 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PropertyValue)
+            @Html.DisplayNameFor(model => model.NumberOfRooms)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photos)
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                <h5>City: <small>@Html.DisplayFor(modelItem => item.Location.City)</small></h5>
-                <h5>Neighborhood: <small>@Html.DisplayFor(modelItem => item.Location.Neighborhood)</small></h5>
-                <h5>Address: <small>@Html.DisplayFor(modelItem => item.Location.Address)</small></h5>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PropertyValue)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfRooms)
+        </td>
+        <td>
+            @*<div class="row">*@
+                @foreach (var photo in item.PhotoList)
+                {
+                    @*<div class="col-md-4">*@
+                        <img class="apartment-view-image" src="@photo" />
+                    @*</div>*@
+                }
+            @*</div>*@
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
 
 </table>

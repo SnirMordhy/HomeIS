@@ -313,13 +313,13 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\_IndexModal.cshtml" />
+    <Content Include="Views\Home\CoinsExchange.cshtml" />
+    <Content Include="Views\Apartments\Index.cshtml" />
     <Content Include="Views\Apartments\Create.cshtml" />
     <Content Include="Views\Apartments\Delete.cshtml" />
     <Content Include="Views\Apartments\Details.cshtml" />
     <Content Include="Views\Apartments\Edit.cshtml" />
-    <Content Include="Views\Apartments\Index.cshtml" />
-    <Content Include="Views\Home\_IndexModal.cshtml" />
-    <Content Include="Views\Home\CoinsExchange.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -347,13 +347,11 @@
     <EmbeddedResource Include="Migrations\201809070629425_apartment.resx">
       <DependentUpon>201809070629425_apartment.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="Migrations\201809070727551_apartment1.resx">
       <DependentUpon>201809070727551_apartment1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809081023330_apartment2.resx">
       <DependentUpon>201809081023330_apartment2.cs</DependentUpon>
-
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

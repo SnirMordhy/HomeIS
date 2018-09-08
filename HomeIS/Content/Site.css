@@ -80,3 +80,9 @@ color: #ffffff;
     background-size: cover;
     background-position: center;
 }
+
+.apartment-view-image {
+
+    height: 100px;
+    max-width:200px;
+}
