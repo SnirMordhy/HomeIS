@@ -318,6 +318,7 @@
     <Content Include="Views\Apartments\Details.cshtml" />
     <Content Include="Views\Apartments\Edit.cshtml" />
     <Content Include="Views\Apartments\Index.cshtml" />
+    <Content Include="Views\Home\_IndexModal.cshtml" />
     <Content Include="Views\Home\CoinsExchange.cshtml" />
   </ItemGroup>
   <ItemGroup>
