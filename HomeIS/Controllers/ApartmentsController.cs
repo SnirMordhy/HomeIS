@@ -17,7 +17,7 @@ namespace HomeIS.Controllers
         // GET: Apartments
         public ActionResult Index()
         {
-            return View(db.Apartments.ToList());
+            return View(db.Apartments.Where(ap => ap.Owner == db.Users.FirstOrDefault<ApplicationUser>(user => user.Email == this.User.Identity.Name)));
         }
 
         // GET: Apartments/Details/5
@@ -129,5 +129,6 @@ namespace HomeIS.Controllers
             var apartments = db.Apartments.ToList();
             return Json(apartments, JsonRequestBehavior.AllowGet);
         }
+        
     }
 }

@@ -1,12 +1,4 @@
 ﻿$(document).ready(function () {
-
-    //$.getJSON('../content/json.json', function (data) {
-
-    //    window.apartments = data;
-    //    updateApartmentList(data);
-
-    //});
-
     $.ajax({
         dataType: "json",
         url: "/Apartments/AllApartmentsJSON",
@@ -27,7 +19,7 @@ function updateModalData(apartment) {
 
     $.each(apartment.PhotoList, function (index, photo) {
 
-        $('.carousel-indicators').append('<li data-target="#apartment-photos-carousel" data-slide-to="' + index + '"></li>');
+        $('.carousel-indicators').append('<li data-target="#apartment-photos-carousel" class="' + (index == 0 ? "active" : "") + '" data-slide-to="' + index + '"></li>');
         $('.carousel-inner').append('<div style="background-image:url(' + "\'" + photo + "\'" + ')" class="item ' + (index == 0 ? "active" : "") + '"><img style="display: none" src="' + photo + '"></div>');
     });
 
