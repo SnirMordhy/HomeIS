@@ -17,7 +17,13 @@ namespace HomeIS.Controllers
         // GET: Apartments
         public ActionResult Index()
         {
+            if (!Request.IsAuthenticated)
+            {
+                return Redirect("/Account/Login");
+            }
+
             return View(db.Apartments.Where(ap => ap.Owner == db.Users.FirstOrDefault<ApplicationUser>(user => user.Email == this.User.Identity.Name)));
+            
         }
 
         // GET: Apartments/Details/5
