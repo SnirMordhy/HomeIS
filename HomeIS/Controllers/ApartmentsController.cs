@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -52,10 +53,31 @@ namespace HomeIS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Location,Description,PropertyValue")] Apartment apartment)
+        public ActionResult Create([Bind(Include = "ID,Owner,Location,Description,PropertyValue,PhotoList,Photos,Balcony,Size,FloorNumber,NumberOfRooms")] Apartment apartment)
         {
+            List<string> PhotoList = new List<string>();
+
             if (ModelState.IsValid)
             {
+                for (int uploadID = 0; uploadID < Request.Files.Count; uploadID++)
+                {
+                    var uploadedFile = Request.Files[uploadID];
+
+                    if (uploadedFile.HasFile())
+                    {
+                        string relativePath = "UserPhotos/" + this.User.Identity.Name.Replace("@", "------");
+                        string absolutePath = AppDomain.CurrentDomain.BaseDirectory + relativePath;
+                        Directory.CreateDirectory(absolutePath);
+
+                        string filename = DateTime.Now.ToFileTime() + (new Random().Next()).ToString() + Path.GetExtension(uploadedFile.FileName);
+                        uploadedFile.SaveAs(Path.Combine(absolutePath, filename));
+                        PhotoList.Add(relativePath + '/' + filename);
+                    }
+                }
+
+                apartment.PhotoList = PhotoList;
+                apartment.Owner = db.Users.SingleOrDefault(s => s.Email == this.User.Identity.Name);
+
                 db.Apartments.Add(apartment);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -88,6 +110,8 @@ namespace HomeIS.Controllers
         {
             if (ModelState.IsValid)
             {
+                Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + "UserPhoto/" + this.User.Identity.Name.Replace("@", "------")).ToList().ForEach(file)
+
                 db.Entry(apartment).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -116,6 +140,9 @@ namespace HomeIS.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Apartment apartment = db.Apartments.Find(id);
+
+            apartment.PhotoList.ForEach(photo => System.IO.File.Delete(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, photo)));
+
             db.Apartments.Remove(apartment);
             db.SaveChanges();
             return RedirectToAction("Index");

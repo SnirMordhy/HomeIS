@@ -39,10 +39,13 @@
             @Html.DisplayFor(modelItem => item.NumberOfRooms)
         </td>
         <td>
+            if(item.PhotoList != null)
+            {
                 @foreach (var photo in item.PhotoList)
                 {
                         <img class="apartment-view-image" src="@photo" />
                 }
+            }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

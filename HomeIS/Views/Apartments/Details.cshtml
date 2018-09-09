@@ -74,7 +74,14 @@
         <dd>
             @foreach (var photo in Model.PhotoList)
             {
-                <img class="apartment-view-image" src="@photo" />
+                if (photo.Contains("http"))
+                {
+                    <img class="apartment-view-image" src="@photo" />
+                }
+                else
+                {
+                    <img class="apartment-view-image" src="../../@photo" />
+                }
             }
         </dd>
 

@@ -13,6 +13,7 @@
         $('.apartment-view-image-delete-button').click(function () {
             $('#Photos')[0].value = $('#Photos')[0].value.replace(this.dataset['img'] + ',', "");
             $('#Photos')[0].value = $('#Photos')[0].value.replace(',' + this.dataset['img'], "");
+            $('#Photos')[0].value = $('#Photos')[0].value.replace(this.dataset['img'], "");
             this.parentElement.parentElement.remove();
         });
     });

@@ -73,7 +73,17 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Photos)
+            @foreach (var photo in Model.PhotoList)
+            {
+                if (photo.Contains("http"))
+                {
+                    <img class="apartment-view-image" src="@photo" />
+                }
+                else
+                {
+                    <img class="apartment-view-image" src="../../@photo" />
+                }
+            }
         </dd>
 
     </dl>
