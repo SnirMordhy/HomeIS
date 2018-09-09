@@ -72,7 +72,10 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Photos)
+            @foreach (var photo in Model.PhotoList)
+            {
+                <img class="apartment-view-image" src="@photo" />
+            }
         </dd>
 
     </dl>

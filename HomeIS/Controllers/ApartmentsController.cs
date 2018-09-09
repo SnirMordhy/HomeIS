@@ -84,7 +84,7 @@ namespace HomeIS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Location,Description,PropertyValue")] Apartment apartment)
+        public ActionResult Edit([Bind(Include = "ID,Owner,Location,Description,PropertyValue,PhotoList,Photos,Balcony,Size,FloorNumber,NumberOfRooms")] Apartment apartment)
         {
             if (ModelState.IsValid)
             {

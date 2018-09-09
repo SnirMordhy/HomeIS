@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Apartment</h4>
         <hr />
@@ -75,11 +75,26 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="display:none">
             @Html.LabelFor(model => model.Photos, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Photos, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Photos, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Photos</label>
+            <div class="col-md-10">
+                @foreach (var photo in Model.PhotoList)
+                {
+                    <div class="apartment-view-image-container">
+                        <img class="apartment-view-image" src="@photo" />
+                        <div class="apartment-view-image-overlay ">
+                            <a class="apartment-view-image-delete-button" data-img="@photo" href="javascript:void(0);" style="color:transparent"><span class="glyphicon glyphicon-remove apartment-view-image-container-delete" /></a>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
 

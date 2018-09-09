@@ -21,7 +21,7 @@ namespace HomeIS.Models
         public List<string> PhotoList { get; set; }
         public string Photos
         {
-            get { return string.Join(",", PhotoList); }
+            get { return (PhotoList != null ? string.Join(",", PhotoList) : null); }
             set { PhotoList = value.Split(',').ToList(); }
         }
     }

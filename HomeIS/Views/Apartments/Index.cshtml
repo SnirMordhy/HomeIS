@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<HomeIS.Models.Apartment>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "My Apartments";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -39,14 +39,10 @@
             @Html.DisplayFor(modelItem => item.NumberOfRooms)
         </td>
         <td>
-            @*<div class="row">*@
                 @foreach (var photo in item.PhotoList)
                 {
-                    @*<div class="col-md-4">*@
                         <img class="apartment-view-image" src="@photo" />
-                    @*</div>*@
                 }
-            @*</div>*@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
