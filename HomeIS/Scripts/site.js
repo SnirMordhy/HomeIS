@@ -91,7 +91,7 @@ function updateApartmentList(data) {
             + '                </div>'
             + '            </div>'
             + '        </div>'
-            + '        <input type="submit" data-apartmentid=' + index + ' class= "btn btn-primary buyProperty" value = "!רכוש כעת" /> '
+            + '        <input type="submit" data-apartmentid=' + index + ' class= "btn btn-success buyProperty" value = "!רכוש כעת" /> '
             + '        <br /><br />'
             + '    </div>'
             + '</div>'
@@ -121,7 +121,7 @@ function updateTransactionModalData(apartmentData) {
     $('#transactionPayment').prop("min", apartmentData.PropertyValue);
     $('#transactionPayment').prop("placeholder", apartmentData.PropertyValue);
 
-    $('.form-control').click(function () {
+    $('.form-control').keypress(function () {
         isCheckAllowed();
     });
 
@@ -154,7 +154,11 @@ function updateTransactionModalData(apartmentData) {
 }
 
 function isCheckAllowed() {
-    if ($('#transactionPayment').text() != undefined) {
+    if ($('#transactionPayment').val() !== '' &&
+        $('#cardNumber').val() !== '' &&
+        $('#cardExpiry').val() !== '' &&
+        $('#cardCVC').val() !== '')
+    {
         $('#createTransaction').prop('disabled', false);
     }
 }
