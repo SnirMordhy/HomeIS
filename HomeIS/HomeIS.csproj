@@ -327,6 +327,7 @@
     <Content Include="Views\Transactions\Details.cshtml" />
     <Content Include="Views\Transactions\Edit.cshtml" />
     <Content Include="Views\Transactions\Index.cshtml" />
+    <Content Include="Views\Home\_TransactionModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -354,13 +355,11 @@
     <EmbeddedResource Include="Migrations\201809070629425_apartment.resx">
       <DependentUpon>201809070629425_apartment.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="Migrations\201809070727551_apartment1.resx">
       <DependentUpon>201809070727551_apartment1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809081023330_apartment2.resx">
       <DependentUpon>201809081023330_apartment2.cs</DependentUpon>
-
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

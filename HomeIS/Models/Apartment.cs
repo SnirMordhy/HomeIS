@@ -16,6 +16,8 @@ namespace HomeIS.Models
         public int Size { get; set; }
         public bool Balcony { get; set; }
         public int FloorNumber { get; set; }
+        public bool IsForSale { get; set; }
+
 
         // Entity Framework can't save an array
         public List<string> PhotoList { get; set; }

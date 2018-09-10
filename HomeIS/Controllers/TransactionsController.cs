@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using HomeIS.Models;
 
@@ -59,6 +58,40 @@ namespace HomeIS.Controllers
 
             ViewBag.ApartmentID = new SelectList(db.Apartments, "ID", "Description", transaction.ApartmentID);
             return View(transaction);
+        }
+
+        // POST: Transactions/CreateTransaction
+        // Create apartment buying transaction;
+        [HttpPost]
+        public ActionResult CreateTransaction(Apartment apartment, int buyingPrice)
+        {
+            Transaction transaction = new Transaction();
+            Apartment apartmentForSale = db.Apartments.Include(aprt => aprt.Owner).FirstOrDefault(aprt => aprt.ID == apartment.ID);
+            ApplicationUser currentUser = db.Users.Where(user => user.UserName == User.Identity.Name).FirstOrDefault();
+
+            if (apartmentForSale == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if(currentUser==null || apartmentForSale.Owner.Id == currentUser.Id)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Conflict);
+            }
+
+            transaction.Saler = apartmentForSale.Owner;
+            transaction.Purchaser = currentUser;
+            transaction.TransactionDate = DateTime.Now;
+            transaction.BuyingPrice = buyingPrice;
+            transaction.Apartment = apartmentForSale;
+
+            apartmentForSale.Owner = currentUser;
+            apartmentForSale.IsForSale = false;
+
+            db.Transactions.Add(transaction);
+            db.SaveChanges();
+
+            return new HttpStatusCodeResult(HttpStatusCode.Created);
+
         }
 
         // GET: Transactions/Edit/5

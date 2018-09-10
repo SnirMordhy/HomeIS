@@ -1,0 +1,26 @@
+﻿<div class="modal fade" id="transaction-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="transactionModalTitle"></h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">:מחיר קנייה</label>
+                        <input type="number" min="" placeholder="" step="1000" class="form-control" id="transactionPayment">
+                    </div>
+                </form>
+                <div class="alert alert-success text-right" id="alertTransSuccess" role="alert" hidden="hidden">הדירה נמכרה בהצלחה</div>
+                <div class="alert alert-danger text-right" id="alertTransError" role="alert" hidden="hidden">ארעה שגיאה בתהליך המכירה</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">ביטול</button>
+                <button type="submit" class="btn btn-primary" disabled="disabled" id="createTransaction">רכוש דירה</button>
+            </div>
+        </div>
+    </div>
+</div>
