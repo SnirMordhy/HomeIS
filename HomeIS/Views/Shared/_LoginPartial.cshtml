@@ -1,7 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
             {
-                Session["currentUser"] = User.Identity.GetUserName();
                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                 {
                     @Html.AntiForgeryToken()
