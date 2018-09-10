@@ -17,7 +17,7 @@ namespace HomeIS.Controllers
         // GET: Apartments
         public ActionResult Index()
         {
-            return View(db.Apartments.ToList());
+            return View(db.Apartments.Include(t => t.Owner).ToList());
         }
 
         // GET: Apartments/Details/5
