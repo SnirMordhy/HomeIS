@@ -57,7 +57,7 @@ namespace HomeIS.Controllers
         {
             List<string> PhotoList = new List<string>();
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && Request.Files.Count > 0)
             {
                 for (int uploadID = 0; uploadID < Request.Files.Count; uploadID++)
                 {
@@ -65,13 +65,7 @@ namespace HomeIS.Controllers
 
                     if (uploadedFile.HasFile())
                     {
-                        string relativePath = "UserPhotos/" + this.User.Identity.Name.Replace("@", "------");
-                        string absolutePath = AppDomain.CurrentDomain.BaseDirectory + relativePath;
-                        Directory.CreateDirectory(absolutePath);
-
-                        string filename = DateTime.Now.ToFileTime() + (new Random().Next()).ToString() + Path.GetExtension(uploadedFile.FileName);
-                        uploadedFile.SaveAs(Path.Combine(absolutePath, filename));
-                        PhotoList.Add(relativePath + '/' + filename);
+                        PhotoList.Add(UploadApartmentPhoto(uploadedFile));
                     }
                 }
 
@@ -84,6 +78,18 @@ namespace HomeIS.Controllers
             }
 
             return View(apartment);
+        }
+
+        private string UploadApartmentPhoto(HttpPostedFileBase uploadedFile)
+        {
+            string relativePath = "UserPhotos/" + this.User.Identity.Name.Replace("@", "------");
+            string absolutePath = AppDomain.CurrentDomain.BaseDirectory + relativePath;
+            Directory.CreateDirectory(absolutePath);
+
+            string filename = DateTime.Now.ToFileTime() + (new Random().Next()).ToString() + Path.GetExtension(uploadedFile.FileName);
+            uploadedFile.SaveAs(Path.Combine(absolutePath, filename));
+
+            return relativePath + '/' + filename;
         }
 
         // GET: Apartments/Edit/5
@@ -110,7 +116,26 @@ namespace HomeIS.Controllers
         {
             if (ModelState.IsValid)
             {
-                Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + "UserPhoto/" + this.User.Identity.Name.Replace("@", "------")).ToList().ForEach(file)
+                string baseFolder = "UserPhotos/" + this.User.Identity.Name.Replace("@", "------");
+
+                for (int uploadID = 0; uploadID < Request.Files.Count; uploadID++)
+                {
+                    var uploadedFile = Request.Files[uploadID];
+
+                    if (uploadedFile.HasFile())
+                    {
+                        apartment.PhotoList.Add(UploadApartmentPhoto(uploadedFile));
+                    }
+                }
+
+                foreach (string file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + baseFolder))
+                {
+                    if (!apartment.PhotoList.Contains(baseFolder + "/" + Path.GetFileName(file)))
+                    {
+                        System.IO.File.Delete(file);
+                    }
+                }
+                
 
                 db.Entry(apartment).State = EntityState.Modified;
                 db.SaveChanges();
