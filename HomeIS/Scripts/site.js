@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-
     $.ajax({
         dataType: "json",
         url: "/Apartments/AllApartmentsJSON",
@@ -9,7 +8,19 @@
             updateApartmentList(data);
         }
     });
+    $(document).ready(function () {
 
+        $('.apartment-view-image-delete-button').click(function () {
+            if ($(".apartment-view-image-container").length <= 1) {
+                alert("There needs to be at least one photo!")
+            } else {
+                $('#Photos')[0].value = $('#Photos')[0].value.replace(this.dataset['img'] + ',', "");
+                $('#Photos')[0].value = $('#Photos')[0].value.replace(',' + this.dataset['img'], "");
+                $('#Photos')[0].value = $('#Photos')[0].value.replace(this.dataset['img'], "");
+                this.parentElement.parentElement.remove();
+            }
+        });
+    });
 });
 
 
@@ -21,7 +32,7 @@ function updateModalData(apartment) {
 
     $.each(apartment.PhotoList, function (index, photo) {
 
-        $('.carousel-indicators').append('<li data-target="#apartment-photos-carousel" data-slide-to="' + index + '"></li>');
+        $('.carousel-indicators').append('<li data-target="#apartment-photos-carousel" class="' + (index == 0 ? "active" : "") + '" data-slide-to="' + index + '"></li>');
         $('.carousel-inner').append('<div style="background-image:url(' + "\'" + photo + "\'" + ')" class="item ' + (index == 0 ? "active" : "") + '"><img style="display: none" src="' + photo + '"></div>');
     });
 
