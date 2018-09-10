@@ -80,3 +80,24 @@ color: #ffffff;
     background-size: cover;
     background-position: center;
 }
+
+.apartment-view-image {
+    height: 100px;
+    width: 150px;
+    display: inline;
+}
+
+.apartment-view-image-container {
+    height: 100%;
+    max-width: 200px;
+    display: inline-grid;
+    position: relative;
+}
+
+.apartment-view-image-container-delete{
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    text-shadow: -0.5px 0 red, 0 0.5px red, 0.5px 0 red, 0 -0.5px red;
+}
