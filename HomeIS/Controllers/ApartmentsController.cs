@@ -187,6 +187,5 @@ namespace HomeIS.Controllers
             var apartments = db.Apartments.ToList();
             return Json(apartments, JsonRequestBehavior.AllowGet);
         }
-        
     }
 }
