@@ -11,7 +11,8 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             ContextKey = "HomeIS.Models.ApplicationDbContext";
         }
 
@@ -26,7 +27,9 @@
                     Description = "דירה מגניבה בתל אביב!",
                     FloorNumber = 8,
                     PhotoList = new List<string>{"https://lonelyplanetimages.imgix.net/a/g/hi/t/8ec64b64e1d0805b1101f6c70c7f5b31-tel-aviv.jpg?sharp=10&vib=20&w=1200",
-                                "https://cdn.businesstraveller.com/wp-content/uploads/fly-images/879585/Tel-Aviv-916x515.jpg" },
+                                "https://cdn.businesstraveller.com/wp-content/uploads/fly-images/879585/Tel-Aviv-916x515.jpg",
+                        "https://upload.wikimedia.org/wikipedia/commons/2/25/Tel_Aviv_panorama_from_the_Yitzhak_Rabin_Center.jpg",
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnykAae-5E-1f2DmT4CtfwkqNr1vw6t7jrlIOQsV_yBEaWvSzF5Q" },
                     Location = new Location {City = "תל אביב", Neighborhood = "רמת אביב", Address = "טאגור 43 תל אביב" },
                     NumberOfRooms = 6,
                     Owner = context.Users.Single(p => p.Email == "hayitai@gmail.com"),

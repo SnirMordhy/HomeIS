@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Delete</h2>
@@ -33,6 +34,56 @@
 
         <dd>
             @Html.DisplayFor(model => model.PropertyValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfRooms)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfRooms)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Size)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Balcony)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Balcony)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FloorNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FloorNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photos)
+        </dt>
+
+        <dd>
+            @foreach (var photo in Model.PhotoList)
+            {
+                if (photo.Contains("http"))
+                {
+                    <img class="apartment-view-image" src="@photo" />
+                }
+                else
+                {
+                    <img class="apartment-view-image" src="../../@photo" />
+                }
+            }
         </dd>
 
     </dl>

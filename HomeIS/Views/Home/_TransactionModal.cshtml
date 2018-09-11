@@ -1,0 +1,49 @@
+﻿<div class="modal fade" id="transaction-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="transactionModalTitle"></h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">:מחיר קנייה</label>
+                        <input type="number" min="" placeholder="" step="1000" class="form-control" id="transactionPayment">
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label for="cardNumber">CARD NUMBER</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                            <input type="tel" class="form-control" id="cardNumber" placeholder="Valid Card Number" autocomplete="cc-number" required autofocus />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-7 col-md-7">
+                            <div class="form-group">
+                                <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
+                                <input type="tel" class="form-control" id="cardExpiry" placeholder="MM / YY" autocomplete="cc-exp" required />
+                            </div>
+                        </div>
+                        <div class="col-xs-5 col-md-5 pull-right">
+                            <div class="form-group">
+                                <label for="cardCVC">CV CODE</label>
+                                <input type="tel" class="form-control" id="cardCVC" placeholder="CVC" autocomplete="cc-csc" required />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="alert alert-info text-right" id="alertInfoTransSuccess" role="alert">הערה חשובה: נתוני סליקת אשראי הם לצורכי בדיקת נכונות בלבד ולא תתבצע אכיפה עליהם. לסגירת העסקה נדרש לתקשר עם בעל הדירה</div>
+                <div class="alert alert-success text-right" id="alertTransSuccess" role="alert" hidden="hidden">הדירה נמכרה בהצלחה</div>
+                <div class="alert alert-danger text-right" id="alertTransError" role="alert" hidden="hidden">ארעה שגיאה בתהליך המכירה</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">ביטול</button>
+                <button type="submit" class="btn btn-primary" disabled="disabled" id="createTransaction">רכוש דירה</button>
+            </div>
+        </div>
+    </div>
+</div>
