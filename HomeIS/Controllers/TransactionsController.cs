@@ -161,5 +161,14 @@ namespace HomeIS.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public JsonResult DateSellerTransactionPriceJSON(DateTime Date, string SellerUserName, int Price)
+        {
+            var QuerySet = db.Transactions.Include(t => t.Saler).Where(p => p.TransactionDate.Year == Date.Year &&
+                p.TransactionDate.Month == Date.Month && p.TransactionDate.Day == Date.Day &&
+                p.Saler.UserName == SellerUserName && p.BuyingPrice == Price).ToList();
+
+            return Json(QuerySet, JsonRequestBehavior.AllowGet);
+        }
     }
 }
