@@ -316,9 +316,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\_IndexModal.cshtml" />
-    <Content Include="Views\Home\CoinsExchange.cshtml" />
-    <Content Include="Views\Apartments\Index.cshtml" />
     <Content Include="Views\Apartments\Create.cshtml" />
     <Content Include="Views\Apartments\Delete.cshtml" />
     <Content Include="Views\Apartments\Details.cshtml" />
