@@ -209,5 +209,13 @@ namespace HomeIS.Controllers
 
             return Json(QuerySet, JsonRequestBehavior.AllowGet);
         }
+        
+        public JsonResult AmountPerCity(string CityName)
+        {
+            var QuerySet = db.Apartments.Where(t => t.Location.City == CityName).GroupBy(p => p.Location.City).
+                Select(g => new { count = g.Count() }).ToList();
+
+            return Json(QuerySet, JsonRequestBehavior.AllowGet);
+        }
     }
 }
