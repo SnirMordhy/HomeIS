@@ -8,7 +8,7 @@ using System.Text;
 
 namespace ApartmentMachineLearning
 {
-    class PredictApartment
+    public class PredictApartment
     {
         private PredictionModel<ApartmentData, ApartmentPrediction> model;
 
