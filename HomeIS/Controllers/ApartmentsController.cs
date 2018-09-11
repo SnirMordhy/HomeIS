@@ -12,11 +12,11 @@ using Apartment_ML;
 
 namespace HomeIS.Controllers
 {
-    private static PredictApartment PredictApartment = new PredictApartment();
 
     public class ApartmentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private static PredictApartment PredictApartment = new PredictApartment();
 
         // GET: Apartments
         public ActionResult Index()
@@ -190,6 +190,11 @@ namespace HomeIS.Controllers
             var apartments = db.Apartments.ToList();
             return Json(apartments, JsonRequestBehavior.AllowGet);
         }
-        
+        public JsonResult PredictIfSold(int size, int price, int floornumber)
+        {
+            var predict = this.PredictApartment.PredictApartmentSale(size, price, floornumber);
+            return Json(predict, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
