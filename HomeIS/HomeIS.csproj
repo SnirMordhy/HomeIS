@@ -400,13 +400,6 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ApartmentMachineLearningBridge\ApartmentMachineLearningBridge.csproj">
-      <Project>{b87da7b3-c754-474c-8679-731f0d24d320}</Project>
-      <Name>ApartmentMachineLearningBridge</Name>
-      <Private>True</Private>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
