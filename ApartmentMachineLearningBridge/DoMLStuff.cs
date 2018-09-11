@@ -7,7 +7,7 @@ using ApartmentMachineLearning;
 
 namespace ApartmentMachineLearningBridge
 {
-    class DoMLStuff
+    public class DoMLStuff
     {
         private PredictApartment pa;
         public DoMLStuff()
