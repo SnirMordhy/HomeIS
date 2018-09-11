@@ -101,3 +101,7 @@ color: #ffffff;
     color: white;
     text-shadow: -0.5px 0 red, 0 0.5px red, 0.5px 0 red, 0 -0.5px red;
 }
+
+aside {
+    background-color: #337ab7;
+}
