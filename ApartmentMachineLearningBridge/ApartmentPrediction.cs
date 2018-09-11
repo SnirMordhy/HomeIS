@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ApartmentMachineLearning
+namespace ApartmentMachineLearningBridge
 {
     class ApartmentPrediction
     {

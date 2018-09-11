@@ -15,7 +15,7 @@ namespace HomeIS.Controllers
     public class ApartmentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        private DoMLStuff ML = new DoMLStuff();
+        private PredictApartment ML = new PredictApartment();
 
         // GET: Apartments
         public ActionResult Index()
