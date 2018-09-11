@@ -8,9 +8,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HomeIS.Models;
+using Apartment_ML;
 
 namespace HomeIS.Controllers
 {
+    private static PredictApartment PredictApartment = new PredictApartment();
+
     public class ApartmentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
