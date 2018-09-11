@@ -8,14 +8,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HomeIS.Models;
-using ApartmentMachineLearningBridge;
+//using ApartmentMachineLearningBridge;
 
 namespace HomeIS.Controllers
 {
     public class ApartmentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        private PredictApartment ML = new PredictApartment();
+        //private PredictApartment ML = new PredictApartment();
 
         // GET: Apartments
         public ActionResult Index()
@@ -190,9 +190,9 @@ namespace HomeIS.Controllers
             return Json(apartments, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult PredictApartmentSale(int size, int price, int floorNumber)
-        {
-            return Json(ML.PredictApartmentSale(size,price,floorNumber), JsonRequestBehavior.AllowGet);
-        }
+        //public JsonResult PredictApartmentSale(int size, int price, int floorNumber)
+        //{
+        //    return Json(ML.PredictApartmentSale(size,price,floorNumber), JsonRequestBehavior.AllowGet);
+        //}
     }
 }
