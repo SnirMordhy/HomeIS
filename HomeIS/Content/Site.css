@@ -118,3 +118,7 @@ aside {
     color: #29627e;
     font-family: OpenSans;
 }
+
+video, video:hover {
+    border-radius: 100px;
+}
