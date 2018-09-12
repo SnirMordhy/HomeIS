@@ -29,24 +29,32 @@ namespace HomeIS.Controllers
             
         }
 
+        
         // GET: Apartments/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (id == null || !Request.IsAuthenticated)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Apartment apartment = db.Apartments.Find(id);
+            Apartment apartment = db.Apartments.SingleOrDefault(ap => (ap.ID == id) &&
+                                                                      (ap.Owner.UserName == this.User.Identity.Name));
             if (apartment == null)
             {
                 return HttpNotFound();
             }
+
             return View(apartment);
         }
 
         // GET: Apartments/Create
         public ActionResult Create()
         {
+            if (!Request.IsAuthenticated)
+            {
+                return Redirect("/Account/Login");
+            }
+
             return View();
         }
 
@@ -57,6 +65,13 @@ namespace HomeIS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Owner,Location,Description,PropertyValue,PhotoList,Photos,Balcony,Size,FloorNumber,NumberOfRooms")] Apartment apartment)
         {
+            if (!Request.IsAuthenticated)
+            {
+                return Redirect("/Account/Login");
+            }
+
+            db.Configuration.LazyLoadingEnabled = false;
+
             List<string> PhotoList = new List<string>();
 
             if (ModelState.IsValid && Request.Files.Count > 0)
@@ -72,7 +87,7 @@ namespace HomeIS.Controllers
                 }
 
                 apartment.PhotoList = PhotoList;
-                apartment.Owner = db.Users.SingleOrDefault(s => s.Email == this.User.Identity.Name);
+                apartment.Owner = db.Users.SingleOrDefault(s => s.UserName == this.User.Identity.Name);
 
                 db.Apartments.Add(apartment);
                 db.SaveChanges();
@@ -97,15 +112,19 @@ namespace HomeIS.Controllers
         // GET: Apartments/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            db.Configuration.LazyLoadingEnabled = false;
+
+            if (id == null || !Request.IsAuthenticated)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Apartment apartment = db.Apartments.Find(id);
+            Apartment apartment = db.Apartments.SingleOrDefault(ap => (ap.ID == id) &&
+                                                                      (ap.Owner.UserName == this.User.Identity.Name));
             if (apartment == null)
             {
                 return HttpNotFound();
             }
+
             return View(apartment);
         }
 
@@ -149,15 +168,17 @@ namespace HomeIS.Controllers
         // GET: Apartments/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (id == null || !Request.IsAuthenticated)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Apartment apartment = db.Apartments.Find(id);
+            Apartment apartment = db.Apartments.SingleOrDefault(ap => (ap.ID == id) &&
+                                                                      (ap.Owner.UserName == this.User.Identity.Name));
             if (apartment == null)
             {
                 return HttpNotFound();
             }
+
             return View(apartment);
         }
 
@@ -166,12 +187,16 @@ namespace HomeIS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Apartment apartment = db.Apartments.Find(id);
+            Apartment apartment = db.Apartments.SingleOrDefault(ap => (ap.ID == id) &&
+                                                                      (ap.Owner.UserName == this.User.Identity.Name));
 
-            apartment.PhotoList.ForEach(photo => System.IO.File.Delete(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, photo)));
+            if (apartment != null)
+            {
+                apartment.PhotoList.ForEach(photo => System.IO.File.Delete(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, photo)));
 
-            db.Apartments.Remove(apartment);
-            db.SaveChanges();
+                db.Apartments.Remove(apartment);
+                db.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
 
