@@ -1,4 +1,10 @@
-﻿body {
+﻿@font-face {
+    font-family: "OpenSans";
+    src: url("../fonts/OpenSans-Regular.eot");
+    src: url("../fonts/OpenSans-Regular.ttf") format("truetype");
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -110,4 +116,5 @@ aside {
     box-shadow: inset 5px 0 5px -5px #29627e;
     font-style: italic;
     color: #29627e;
+    font-family: OpenSans;
 }
