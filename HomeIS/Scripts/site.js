@@ -8,6 +8,7 @@
             updateApartmentList(data);
         }
     });
+
     $(document).ready(function () {
 
         $('.apartment-view-image-delete-button').click(function () {
@@ -20,6 +21,46 @@
                 this.parentElement.parentElement.remove();
             }
         });
+    });
+
+    $('form').submit(function (e) {
+        var minprice = $("#min-price-filter").val();
+        if (minprice == "") {
+            $("#min-price-filter").val(0);
+        }
+
+        var maxprice = $("#max-price-filter").val();
+        if (maxprice == "") {
+            $.ajax({
+                dataType: "json",
+                url: "/Apartments/SizeBalconyMinOrMaxPriceJSON",
+                data: {
+                    Balcony: $("#balcony-filter").is(":checked"),
+                    Size: $("#size-filter").val(),
+                    MinimumPrice: $("#min-price-filter").val()
+                },
+                success: function (data) {
+                    updateApartmentList(data);
+                }
+            });
+        }
+        else {
+            $.ajax({
+                dataType: "json",
+                url: "/Apartments/SizeBalconyPriceRangeJSON",
+                data: {
+                    Balcony: $("#balcony-filter").is(":checked"),
+                    Size: $("#size-filter").val(),
+                    MinimumPrice: $("#min-price-filter").val(),
+                    MaximumPrice: $("#max-price-filter").val()
+                },
+                success: function (data) {
+                    updateApartmentList(data);
+                }
+            });
+        }
+
+        e.preventDefault();
     });
 });
 
@@ -68,8 +109,8 @@ function updateModalData(apartment) {
 };
 
 function updateApartmentList(data) {
+    $('#apartment-grid div').hide();
     $.each(data, function (index, apartment) {
-
         $('#apartment-grid').append(
             '<div class="col-sm-6 col-md-4">'
             + '<div class="thumbnail">'

@@ -188,28 +188,19 @@ namespace HomeIS.Controllers
             return Json(apartments, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult SizeBalconyMinOrMaxPriceJSON(int Size, bool Balcony, int Price, bool IsMinimumPrice)
+        public JsonResult SizeBalconyMinOrMaxPriceJSON(int Size, bool Balcony, int MinimumPrice)
         {
-            if (IsMinimumPrice)
-            {
-                return Json(db.Apartments.Include(t => t.Owner).Where(p => p.Balcony == Balcony && p.Size == Size && 
-                    p.PropertyValue >= Price).ToList(), JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json(db.Apartments.Include(t => t.Owner).Where(p => p.Balcony == Balcony && p.Size == Size && 
-                    p.PropertyValue <= Price).ToList(), JsonRequestBehavior.AllowGet);
-            }
+            return Json(db.Apartments.Include(t => t.Owner).Where(p => p.Balcony == Balcony && p.Size == Size && 
+                p.PropertyValue >= MinimumPrice).ToList(), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult SizeBalconyPriceRangeJSON(int Size, bool Balcony, int MinimumPrice, int MaximumPrice)
         {
             var QuerySet = db.Apartments.Include(t => t.Owner).Where(p => p.Balcony == Balcony && p.Size == Size &&
                     p.PropertyValue >= MinimumPrice && p.PropertyValue <= MaximumPrice).ToList();
-
             return Json(QuerySet, JsonRequestBehavior.AllowGet);
         }
-        
+
         public JsonResult AmountPerCity(string CityName)
         {
             var QuerySet = db.Apartments.Where(t => t.Location.City == CityName).GroupBy(p => p.Location.City).
