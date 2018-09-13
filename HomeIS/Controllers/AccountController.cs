@@ -386,6 +386,22 @@ namespace HomeIS.Controllers
         }
 
         //
+        // POST: /Account/Delete
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete()
+        {
+            if (Request.IsAuthenticated)
+            {
+                ApplicationUser user = UserManager.FindByName(this.User.Identity.Name);
+                UserManager.Delete(user);
+                AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        //
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]

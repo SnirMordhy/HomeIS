@@ -83,5 +83,12 @@
                     }
                 }*@
         </dd>
-    </dl>
+        <dt>Delete Your Account</dt>
+        <dd>
+            @using(Html.BeginForm("Delete", "Account", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+            <input type="submit" value="Delete Your User" class="btn btn-danger" />
+            }
+        </dd>
 </div>
