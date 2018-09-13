@@ -239,6 +239,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrapsocial.css" />
+    <Content Include="Content\d3-styles.css" />
     <Content Include="Content\Images\israel_ico.png" />
     <Content Include="Content\Images\japan_ico.png" />
     <Content Include="Content\Images\united-kigdoms_ico.png" />
@@ -272,6 +273,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\canvas.js" />
+    <Content Include="Scripts\D3JS-Scripts.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -379,6 +381,9 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Home\D3Stats.cshtml" />
+    <Content Include="Views\Home\_LiveTiles.cshtml" />
+    <Content Include="Views\Home\_DonutChart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

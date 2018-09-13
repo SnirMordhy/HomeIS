@@ -215,6 +215,15 @@ namespace HomeIS.Controllers
             return Json(apartments, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult ApartmentCountGroupJSON()
+        {
+            var apartments = from ap in db.Apartments
+                             group ap by ap.Location.City into ApartmentGroup
+                             select new {City= ApartmentGroup.Key, Count = ApartmentGroup.Count() };
+
+            return Json(apartments, JsonRequestBehavior.AllowGet);
+        }
+
         //public JsonResult PredictApartmentSale(int size, int price, int floorNumber)
         //{
         //    return Json(ML.PredictApartmentSale(size,price,floorNumber), JsonRequestBehavior.AllowGet);
