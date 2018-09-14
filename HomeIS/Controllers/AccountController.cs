@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using HomeIS.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace HomeIS.Controllers
 {
@@ -17,9 +18,11 @@ namespace HomeIS.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db;
 
         public AccountController()
         {
+            db = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -139,6 +142,7 @@ namespace HomeIS.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.Roles = new SelectList(db.Roles.ToList(), "Name", "Name");
             return View();
         }
 
@@ -156,6 +160,9 @@ namespace HomeIS.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    await UserManager.AddToRoleAsync(user.Id, model.UserRoles);
+
+                    await UserManager.SendEmailAsync(user.Id, "הרשמותך בוצעה בהצלחה", "שוורצפחרב");
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -165,6 +172,9 @@ namespace HomeIS.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
+
+                ViewBag.Roles = new SelectList(db.Roles.ToList(), "Name", "Name");
+
                 AddErrors(result);
             }
 
