@@ -142,7 +142,7 @@ namespace HomeIS.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.Roles = new SelectList(db.Roles.ToList(), "Name", "Name");
+            ViewBag.Roles = new SelectList(db.Roles.OrderByDescending(r => r.Name), "Name", "Name");
             return View();
         }
 
@@ -160,10 +160,7 @@ namespace HomeIS.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    await UserManager.AddToRoleAsync(user.Id, model.UserRoles);
-
-                    await UserManager.SendEmailAsync(user.Id, "הרשמותך בוצעה בהצלחה", "שוורצפחרב");
-                    
+                    await UserManager.AddToRoleAsync(user.Id, model.UserRoles);                    
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -173,7 +170,7 @@ namespace HomeIS.Controllers
                     return RedirectToAction("Index", "Home");
                 }
 
-                ViewBag.Roles = new SelectList(db.Roles.ToList(), "Name", "Name");
+                ViewBag.Roles = new SelectList(db.Roles.OrderByDescending(r=> r.Name), "Name", "Name");
 
                 AddErrors(result);
             }
