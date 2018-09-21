@@ -12,19 +12,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Apartment.Description)
+            Apartment Description
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SalerID)
+            Buyer Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PurchaserEmail)
+            Transaction Date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TransactionDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BuyingPrice)
+            Total Payment
         </th>
         <th></th>
     </tr>
@@ -35,10 +32,7 @@
             @Html.DisplayFor(modelItem => item.Apartment.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SalerID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PurchaserEmail)
+            @Html.DisplayFor(modelItem => item.Purchaser.Email)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TransactionDate)
