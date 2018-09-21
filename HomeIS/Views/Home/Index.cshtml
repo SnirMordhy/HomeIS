@@ -13,25 +13,31 @@
 </header>
 
 <div class="row" id="apartment-main-view">
-    <div class="col-sm-2" style="left:0">
+    <div class="col-sm-3" style="left:0;">
         <form>
             <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Show All Apartments</label>
-                <input type="checkbox" class="form-control" id="show-all-filter">
+                <br />
+                <label for="recipient-name" class="col-form-label" style="max-width: 90%; padding-top: 8px">Show All Apartments</label>
+                <input type="checkbox" class="form-control" id="show-all-filter" 
+                       style="display: inline-block; max-width: 10%; float:right; top:-10px">
+                <br />
+                <br />
             </div>
             <hr />
             <div class="form-group">
+                <br />
                 <label for="recipient-name" class="col-form-label">Minimum Price</label>
-                <input type="number" min="" placeholder="" step="1000" class="form-control" id="min-price-filter">
-
+                <input type="number" min="" placeholder="" class="form-control" id="min-price-filter">
+                <br />
                 <label for="recipient-name" class="col-form-label">Maximum Price</label>
-                <input type="number" min="" placeholder="" step="1000" class="form-control" id="max-price-filter">
-
+                <input type="number" min="" placeholder="" class="form-control" id="max-price-filter">
+                <br />
                 <label for="recipient-name" class="col-form-label">Size</label>
-                <input type="number" min="" placeholder="" step="10" class="form-control" id="size-filter">
-
-                <label for="recipient-name" class="col-form-label">Balcony</label>
-                <input type="checkbox" class="form-control" id="balcony-filter">
+                <input type="number" min="" placeholder="" class="form-control" id="size-filter">
+                <br />
+                <label for="recipient-name" class="col-form-label" style="max-width: 90%; padding-top: 8px">Balcony</label>
+                <input type="checkbox" class="form-control" id="balcony-filter" 
+                       style="display: inline-block; max-width: 10%; float:right">
             </div>
             <hr />
             <div class="form-group">
@@ -40,7 +46,7 @@
             </div>
         </form>
     </div>
-    <div class="col-sm-10">
+    <div class="col-sm-9">
         <div class="row" id="apartment-grid">
         </div>
     </div>
