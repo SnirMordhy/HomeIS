@@ -1,0 +1,46 @@
+﻿@model Dictionary<HomeIS.Models.ApplicationUser, int>
+
+@{
+    ViewBag.Title = "Statistics";
+}
+
+<h2 class="text-center">: שלושת המוכרים הגדולים של כל הזמנים </h2>
+<br />
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>
+            <span class="fa fa-user"></span>
+            שם משתמש
+        </th>
+        <th>
+            <span class="fa fa-chart-line"></span>
+            מספר דירות שמכר
+        </th>
+        <th>
+            <span class="fa fa-clipboard-list"></span>
+            דירוג כוכבים
+        </th>
+        <th></th>
+    </tr>
+<!-- foreach statment that uses modal & index as well -->
+@foreach (var item in Model.Select((model, index) => new { model, index })) {
+    <tr>
+        <td>
+            @(item.index + 1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.model.Key.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.model.Value)
+        </td>
+        <td>
+            @for (int i = 3; i > item.index; i--)
+            {
+                <span class="fa fa-star" style="color:yellow"></span>
+            }
+        </td>
+    </tr>
+}
+</table>
