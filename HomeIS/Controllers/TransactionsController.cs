@@ -21,6 +21,7 @@ namespace HomeIS.Controllers
         }
 
         // Get: Transactions/TopSalingTable
+        [Authorize(Roles = "Admin")]
         public ActionResult TopSalingTable()
         {
             Dictionary<ApplicationUser, int> transactions = db.Transactions.GroupBy(t => t.Saler)
