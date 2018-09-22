@@ -21,26 +21,20 @@
             }
         });
     });
-
-    $('form').submit(function (e) {
+    
+    $("#apartment-filter-form").submit(function (e) {
 
         var showall = $("#show-all-filter").is(":checked");
 
         if (showall) {
-            var els = document.getElementsByClassName("apartment-filter");
+            var els = $("#apartment-filter");
             var len = els.length;
 
             for (var i = 0; i <= len; i++) {
                 els[i].dsabled = true;
             }
 
-            $.ajax({
-                dataType: "json",
-                url: "/Apartments/AllApartmentsJSON",
-                success: function (data) {
-                    updateApartmentList(data);
-                }
-            });
+            getAllApartmentsJSON();
         }
         else {
             var minprice = $("#min-price-filter").val();
@@ -51,34 +45,13 @@
 
             var maxprice = $("#max-price-filter").val();
 
-            if (maxprice == "") {
-                $.ajax({
-                    dataType: "json",
-                    url: "/Apartments/SizeBalconyMinOrMaxPriceJSON",
-                    data: {
-                        Balcony: $("#balcony-filter").is(":checked"),
-                        Size: $("#size-filter").val(),
-                        MinimumPrice: $("#min-price-filter").val()
-                    },
-                    success: function (data) {
-                        updateApartmentList(data);
-                    }
-                });
-            }
-            else {
-                $.ajax({
-                    dataType: "json",
-                    url: "/Apartments/SizeBalconyPriceRangeJSON",
-                    data: {
-                        Balcony: $("#balcony-filter").is(":checked"),
-                        Size: $("#size-filter").val(),
-                        MinimumPrice: $("#min-price-filter").val(),
-                        MaximumPrice: $("#max-price-filter").val()
-                    },
-                    success: function (data) {
-                        updateApartmentList(data);
-                    }
-                });
+            if (maxprice != null) {
+                if (maxprice == "") {
+                    getSizeBalconyMinOrMaxPriceJSON();
+                }
+                else {
+                    getSizeBalconyPriceRangeJSON();
+                }
             }
         }
 
@@ -233,4 +206,45 @@ function isCheckAllowed() {
         $('#cardCVC').val() !== '') {
         $('#createTransaction').prop('disabled', false);
     }
+}
+
+function getAllApartmentsJSON() {
+    $.ajax({
+        dataType: "json",
+        url: "/Apartments/AllApartmentsJSON",
+        success: function (data) {
+            updateApartmentList(data);
+        }
+    });
+}
+
+function getSizeBalconyMinOrMaxPriceJSON() {
+    $.ajax({
+        dataType: "json",
+        url: "/Apartments/SizeBalconyMinOrMaxPriceJSON",
+        data: {
+            Balcony: $("#balcony-filter").is(":checked"),
+            Size: $("#size-filter").val(),
+            MinimumPrice: $("#min-price-filter").val()
+        },
+        success: function (data) {
+            updateApartmentList(data);
+        }
+    });
+}
+
+function getSizeBalconyPriceRangeJSON() {
+    $.ajax({
+        dataType: "json",
+        url: "/Apartments/SizeBalconyPriceRangeJSON",
+        data: {
+            Balcony: $("#balcony-filter").is(":checked"),
+            Size: $("#size-filter").val(),
+            MinimumPrice: $("#min-price-filter").val(),
+            MaximumPrice: $("#max-price-filter").val()
+        },
+        success: function (data) {
+            updateApartmentList(data);
+        }
+    });
 }
