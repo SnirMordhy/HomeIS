@@ -30,8 +30,6 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @*@Html.DisplayFor(modelItem => item.Location)*@
-
             <label>City: </label> @Html.DisplayFor(modelItem => item.Location.City)
             <br />
             <label>Neighborhood: </label> @Html.DisplayFor(modelItem => item.Location.Neighborhood)
