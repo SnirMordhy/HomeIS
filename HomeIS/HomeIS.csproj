@@ -239,6 +239,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrapsocial.css" />
+    <Content Include="Content\d3-styles.css" />
     <Content Include="Content\Images\israel_ico.png" />
     <Content Include="Content\Images\japan_ico.png" />
     <Content Include="Content\Images\united-kigdoms_ico.png" />
@@ -271,6 +272,7 @@
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Content\fontawesome.css" />
     <Content Include="Scripts\coins-exchange-service.js" />
+    <Content Include="Scripts\D3JS-Scripts.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -331,6 +333,10 @@
     <Content Include="Views\Transactions\Index.cshtml" />
     <Content Include="Views\Home\_TransactionModal.cshtml" />
     <Content Include="Views\Transactions\Statistics.cshtml" />
+    <Content Include="Views\Home\D3Stats.cshtml" />
+    <Content Include="Views\Home\_DonutChart.cshtml" />
+    <Content Include="Views\Home\_LiveTiles.cshtml" />
+    <Content Include="Views\Home\D3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
