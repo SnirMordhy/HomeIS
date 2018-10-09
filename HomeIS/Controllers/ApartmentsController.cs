@@ -187,7 +187,16 @@ namespace HomeIS.Controllers
             var apartments = db.Apartments.ToList();
             return Json(apartments, JsonRequestBehavior.AllowGet);
         }
-        
+
+        public JsonResult ApartmentCountGroupJSON()
+        {
+            var apartments = from ap in db.Apartments
+                group ap by ap.Location.City into ApartmentGroup
+                select new { City = ApartmentGroup.Key, Count = ApartmentGroup.Count() };
+
+            return Json(apartments, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult SizeBalconyMinOrMaxPriceJSON(int Size, bool Balcony, int MinimumPrice)
         {
             return Json(db.Apartments.Include(t => t.Owner).Where(p => p.Balcony == Balcony && p.Size == Size && 
