@@ -286,6 +286,7 @@
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Content\fontawesome.css" />
     <Content Include="Scripts\coins-exchange-service.js" />
+    <Content Include="Scripts\HomeIS\site.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />

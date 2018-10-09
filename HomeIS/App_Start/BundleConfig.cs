@@ -9,9 +9,9 @@ namespace HomeIS
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js", "~/Scripts/HomeIS/site.js"));
+                        "~/Scripts/jquery-{version}.js", "~/Scripts/HomeIS/*.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/sitewide").Include( "~/Scripts/site.js"));
+            bundles.Add(new ScriptBundle("~/bundles/sitewide").Include("~/Scripts/HomeIS/*.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/apartment").Include("~/Scripts/apartment.js"));
 
