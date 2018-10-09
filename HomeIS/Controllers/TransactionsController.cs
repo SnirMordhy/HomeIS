@@ -20,6 +20,17 @@ namespace HomeIS.Controllers
             return View(transactions.ToList());
         }
 
+        // Get: Transactions/TopSalingTable
+        [Authorize(Roles = "Admin")]
+        public ActionResult TopSalingTable()
+        {
+            Dictionary<ApplicationUser, int> transactions = db.Transactions.GroupBy(t => t.Saler)
+                                                            .Select(g => new { g.Key, Count = g.Count() })
+                                                            .OrderByDescending(s => s.Count)
+                                                            .ToDictionary(s => s.Key, s => s.Count);
+            return View("Statistics", transactions);
+        }
+
         // GET: Transactions/Details/5
         public ActionResult Details(int? id)
         {
@@ -160,6 +171,15 @@ namespace HomeIS.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public JsonResult DateSellerTransactionPriceJSON(DateTime Date, string SellerUserName, int Price)
+        {
+            var QuerySet = db.Transactions.Include(t => t.Saler).Where(p => p.TransactionDate.Year == Date.Year &&
+                p.TransactionDate.Month == Date.Month && p.TransactionDate.Day == Date.Day &&
+                p.Saler.UserName == SellerUserName && p.BuyingPrice == Price).ToList();
+
+            return Json(QuerySet, JsonRequestBehavior.AllowGet);
         }
     }
 }

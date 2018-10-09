@@ -187,5 +187,26 @@ namespace HomeIS.Controllers
             var apartments = db.Apartments.ToList();
             return Json(apartments, JsonRequestBehavior.AllowGet);
         }
+        
+        public JsonResult SizeBalconyMinOrMaxPriceJSON(int Size, bool Balcony, int MinimumPrice)
+        {
+            return Json(db.Apartments.Include(t => t.Owner).Where(p => p.Balcony == Balcony && p.Size == Size && 
+                p.PropertyValue >= MinimumPrice).ToList(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SizeBalconyPriceRangeJSON(int Size, bool Balcony, int MinimumPrice, int MaximumPrice)
+        {
+            var QuerySet = db.Apartments.Include(t => t.Owner).Where(p => p.Balcony == Balcony && p.Size == Size &&
+                    p.PropertyValue >= MinimumPrice && p.PropertyValue <= MaximumPrice).ToList();
+            return Json(QuerySet, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult AmountPerCity(string CityName)
+        {
+            var QuerySet = db.Apartments.Where(t => t.Location.City == CityName).GroupBy(p => p.Location.City).
+                Select(g => new { count = g.Count() }).ToList();
+
+            return Json(QuerySet, JsonRequestBehavior.AllowGet);
+        }
     }
 }
