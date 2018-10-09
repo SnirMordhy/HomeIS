@@ -10,7 +10,7 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">:מחיר קנייה</label>
+                        <label for="recipient-name" class="col-form-label">BUYING PRICE</label>
                         <input type="number" min="" placeholder="" step="1000" class="form-control" id="transactionPayment">
                     </div>
                     <hr>
@@ -36,13 +36,13 @@
                         </div>
                     </div>
                 </form>
-                <div class="alert alert-info text-right" id="alertInfoTransSuccess" role="alert">הערה חשובה: נתוני סליקת אשראי הם לצורכי בדיקת נכונות בלבד ולא תתבצע אכיפה עליהם. לסגירת העסקה נדרש לתקשר עם בעל הדירה</div>
-                <div class="alert alert-success text-right" id="alertTransSuccess" role="alert" hidden="hidden">הדירה נמכרה בהצלחה</div>
-                <div class="alert alert-danger text-right" id="alertTransError" role="alert" hidden="hidden">ארעה שגיאה בתהליך המכירה</div>
+                <div class="alert alert-info" id="alertInfoTransSuccess" role="alert">Important note: credit clearance data are for validation checking purpose only and will not be enforced. After closing the deal you are required to communicate with the owner of the apartment</div>
+                <div class="alert alert-success" id="alertTransSuccess" role="alert" hidden="hidden">The apartment was successfully sold</div>
+                <div class="alert alert-danger" id="alertTransError" role="alert" hidden="hidden">An error occured during purchase</div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">ביטול</button>
-                <button type="submit" class="btn btn-primary" disabled="disabled" id="createTransaction">רכוש דירה</button>
+                <button type="submit" class="btn btn-primary" disabled="disabled" id="createTransaction">Buy</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
