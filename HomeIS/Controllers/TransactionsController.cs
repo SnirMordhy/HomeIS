@@ -20,6 +20,17 @@ namespace HomeIS.Controllers
             return View(transactions.ToList());
         }
 
+        // Get: Transactions/TopSalingTable
+        [Authorize(Roles = "Admin")]
+        public ActionResult TopSalingTable()
+        {
+            Dictionary<ApplicationUser, int> transactions = db.Transactions.GroupBy(t => t.Saler)
+                                                            .Select(g => new { g.Key, Count = g.Count() })
+                                                            .OrderByDescending(s => s.Count)
+                                                            .ToDictionary(s => s.Key, s => s.Count);
+            return View("Statistics", transactions);
+        }
+
         // GET: Transactions/Details/5
         public ActionResult Details(int? id)
         {
