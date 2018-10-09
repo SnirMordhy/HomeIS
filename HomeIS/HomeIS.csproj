@@ -333,10 +333,9 @@
     <Content Include="Views\Transactions\Index.cshtml" />
     <Content Include="Views\Home\_TransactionModal.cshtml" />
     <Content Include="Views\Transactions\Statistics.cshtml" />
-    <Content Include="Views\Home\D3Stats.cshtml" />
     <Content Include="Views\Home\_DonutChart.cshtml" />
     <Content Include="Views\Home\_LiveTiles.cshtml" />
-    <Content Include="Views\Home\D3.cshtml" />
+    <Content Include="Views\Home\D3Stats.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
