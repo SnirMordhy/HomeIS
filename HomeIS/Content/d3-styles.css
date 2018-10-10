@@ -1,0 +1,17 @@
+﻿.arc text {
+    font: 10px sans-serif;
+    text-anchor: middle;
+}
+
+.arc path {
+    stroke: #fff;
+}
+
+.cells {
+    fill: #aaa;
+}
+
+.label {
+    text-anchor: start;
+    font: 24px sans-serif;
+}
