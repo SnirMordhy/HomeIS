@@ -6,16 +6,15 @@
 
 <h2>D3Stats</h2>
 <link rel="stylesheet" href="~/Content/d3-styles.css" />
-<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="~/Scripts/D3.min.js"></script>
 
 
 <h2>Live: Apartments For Sale!</h2>
 <div class="row">
-    <div class="col-sm-6">
-        @Html.Partial("_LiveTiles")
+    <div  class="col-sm-6">
+        <svg id="tiles" width="960" height="990"></svg>
     </div>
     <div id="donut" class="col-sm-6">
-        @Html.Partial("_DonutChart")
     </div>
 </div>
 
