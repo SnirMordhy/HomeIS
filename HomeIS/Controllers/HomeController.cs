@@ -31,11 +31,5 @@ namespace HomeIS.Controllers
         {
             return View();
         }
-
-        public ActionResult D3Stats()
-        {
-            return View();
-        }
-
     }
 }
