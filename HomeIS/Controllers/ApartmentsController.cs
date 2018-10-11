@@ -219,27 +219,27 @@ namespace HomeIS.Controllers
             return Json(QuerySet, JsonRequestBehavior.AllowGet);
         }
 
-        public bool PredictApartmentSale(Apartment ap)
+        public bool PredictApartmentSale(int size, int value, int floor)
         {
+
             var proc = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = "ML.exe",
-                    Arguments = ap.Size.ToString() + ap.PropertyValue.ToString() + ap.FloorNumber.ToString(),
+                    FileName = System.AppDomain.CurrentDomain.BaseDirectory + @"..\debug\ML.exe",
+                    Arguments = size.ToString() +" "+ value.ToString() +" "+ floor.ToString(),
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
-                    CreateNoWindow = true
+                    CreateNoWindow = false
                 }
             };
 
             proc.Start();
-            while (!proc.StandardOutput.EndOfStream)
-            {
-                return proc.StandardOutput.ReadLine() == "True";
-            }
-
-            return false;
+            proc.WaitForExit();
+            string output = proc.StandardOutput.ReadToEnd();
+            bool returnBool = output.TrimEnd() == "True";
+            
+            return returnBool;
         }
     }
 }

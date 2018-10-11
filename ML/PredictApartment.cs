@@ -23,7 +23,7 @@ namespace ML
 
             // If working in Visual Studio, make sure the 'Copy to Output Directory' 
             // property of iris-data.txt is set to 'Copy always'
-            string dataPath = "Apartment-Trainer.txt";
+            string dataPath = System.AppDomain.CurrentDomain.BaseDirectory + @"..\debug\Apartment-Trainer.txt";
             pipeline.Add(new TextLoader(dataPath).CreateFrom<ApartmentData>(separator: ','));
 
             // STEP 3: Transform your data
