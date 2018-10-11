@@ -113,3 +113,7 @@ color: #ffffff;
 .th-width-15 {
     width: 15%;
 }
+
+#predict-label {
+    margin-left: 10px;
+}
