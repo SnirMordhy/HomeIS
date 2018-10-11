@@ -113,3 +113,7 @@ color: #ffffff;
 .th-width-15 {
     width: 15%;
 }
+
+video, video:hover {
+    border-radius: 100px;
+}
