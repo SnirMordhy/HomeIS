@@ -4,6 +4,11 @@
     ViewBag.Title = "Create";
 }
 
+<header>
+    @Styles.Render("~/Content/site.css")
+    @Styles.Render("~/Content/cool-a-tag.css")
+</header>
+
 <h2>Create</h2>
 
 @using (Html.BeginForm()) 
@@ -62,6 +67,8 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div class="cool-wrapper">
+        <span class="cool-square">
+            <a class="cool-a-tag before after" href="~/Transactions/">Back To List</a>
+        </span>
+    </div>

@@ -5,6 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<header>
+    @Styles.Render("~/Content/site.css")
+    @Styles.Render("~/Content/cool-a-tag.css")
+</header>
+
 <h2>Create</h2>
 
 @using (Html.BeginForm("Create", "Apartments", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -90,6 +95,8 @@
 </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="cool-wrapper">
+    <span class="cool-square">
+        <a class="cool-a-tag before after" href="~/Apartments/Index">Back To List</a>
+    </span>
 </div>

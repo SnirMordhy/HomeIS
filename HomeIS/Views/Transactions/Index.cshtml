@@ -4,11 +4,23 @@
     ViewBag.Title = "Index";
 }
 
+<header>
+    @Styles.Render("~/Content/site.css")
+    @Styles.Render("~/Content/cool-a-tag.css")
+</header>
+
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<br />
+
+<div class="cool-wrapper">
+    <span class="cool-square">
+        <a class="cool-a-tag before after" href="~/Transactions/Create">Create New</a>
+    </span>
+</div>
+
+<br />
+
 <table class="table">
     <tr>
         <th>
