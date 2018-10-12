@@ -54,7 +54,7 @@ namespace ML
             {
                 ApartmentSize = size,
                 ApartmentFloorNumber = floornumber,
-                ApartmentPrice = size
+                ApartmentPrice = price
             });
 
             return (prediction.PredictedLabels == "true");
