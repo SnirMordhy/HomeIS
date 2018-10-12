@@ -6,11 +6,10 @@
 
 <header>
     @Styles.Render("~/Content/site.css")
+    @Styles.Render("~/Content/cool-a-tag.css")
 </header>
 
-<a class="link-to-page" href="~/Transactions/">Transactions</a>
-
-<h2 class="text-center">: שלושת המוכרים הגדולים של כל הזמנים </h2>
+<h2 class="text-center">:שלושת המוכרים הגדולים של כל הזמנים </h2>
 <br />
 <table class="table">
     <tr>
@@ -52,3 +51,11 @@
         </tr>
     }
 </table>
+
+<br />
+
+<div class="cool-wrapper">
+    <span class="cool-square">
+        <a class="cool-a-tag before after" href="~/Transactions/">Transactions</a>
+    </span>
+</div>
