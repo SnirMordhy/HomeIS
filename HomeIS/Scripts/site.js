@@ -248,3 +248,24 @@ function getSizeBalconyPriceRangeJSON() {
         }
     });
 }
+
+function showAllAptCheckbox(checkbox) {
+    if (checkbox.checked == true) {
+        document.getElementById("min-price-filter").disabled = true;
+        document.getElementById("max-price-filter").disabled = true;
+        document.getElementById("size-filter").disabled = true;
+        document.getElementById("balcony-filter").disabled = true;
+        document.getElementById("submit-apartment-filter").disabled = true;
+        document.getElementById("reset-apartment-filter").disabled = true;
+
+        getAllApartmentsJSON();
+
+    } else {
+        document.getElementById("min-price-filter").disabled = false;
+        document.getElementById("max-price-filter").disabled = false;
+        document.getElementById("size-filter").disabled = false;
+        document.getElementById("balcony-filter").disabled = false;
+        document.getElementById("submit-apartment-filter").disabled = false;
+        document.getElementById("reset-apartment-filter").disabled = false;
+    }
+}
