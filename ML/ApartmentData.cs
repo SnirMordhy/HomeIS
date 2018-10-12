@@ -18,7 +18,7 @@ namespace ML
         [Column("2")]
         public float ApartmentFloorNumber;
 
-        [Column("4")]
+        [Column("3")]
         [ColumnName("Label")]
         public string Label;
     }
