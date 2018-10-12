@@ -244,6 +244,7 @@
     <Content Include="Content\Images\japan_ico.png" />
     <Content Include="Content\Images\united-kigdoms_ico.png" />
     <Content Include="Content\Images\unites-states_ico.png" />
+    <Content Include="Content\Videos\Bunny.mp4" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fa-brands-400.svg" />
     <Content Include="fonts\fa-regular-400.svg" />
@@ -271,6 +272,7 @@
     <Content Include="Content\json.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Content\fontawesome.css" />
+    <Content Include="Scripts\canvas.js" />
     <Content Include="Scripts\coins-exchange-service.js" />
     <Content Include="Scripts\D3.min.js" />
     <Content Include="Scripts\D3JS-Scripts.js" />

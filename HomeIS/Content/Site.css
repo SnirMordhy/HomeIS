@@ -113,3 +113,24 @@ color: #ffffff;
 .th-width-15 {
     width: 15%;
 }
+
+video, video:hover {
+    border-radius: 100px;
+}
+
+@font-face {
+    font-family: "OpenSans";
+    src: url("../fonts/OpenSans-Regular.eot");
+    src: url("../fonts/OpenSans-Regular.ttf") format("truetype");
+}
+
+aside {
+    width: 40%;
+    padding-left: .5rem;
+    margin-left: .5rem;
+    float: right;
+    box-shadow: inset 5px 0 5px -5px #29627e;
+    font-style: italic;
+    color: #29627e;
+    font-family: OpenSans;
+}
