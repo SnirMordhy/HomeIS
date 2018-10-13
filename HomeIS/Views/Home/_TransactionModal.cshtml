@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <a class="twitter-share-button" href="https://twitter.com/intent/tweet" data-size="large" data-url=" " data-text="I have just bought a new house with HomeIS, a brand new web app for your new home!!" data-hashtags="HomeSweetHome,HomeIS"> Tweet</a>
-                <form>
+                <form id="create-transaction-form">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">BUYING PRICE</label>
                         <input type="number" min="" placeholder="" step="1000" class="form-control" id="transactionPayment">
@@ -19,20 +19,20 @@
                         <label for="cardNumber">CARD NUMBER</label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                            <input type="tel" class="form-control" id="cardNumber" placeholder="Valid Card Number" autocomplete="cc-number" required autofocus />
+                            <input type="tel" class="form-control" id="cardNumber" placeholder="Valid Card Number" autocomplete="cc-number" maxlength="16" required autofocus />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-7 col-md-7">
                             <div class="form-group">
                                 <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
-                                <input type="tel" class="form-control" id="cardExpiry" placeholder="MM / YY" autocomplete="cc-exp" required />
+                                <input type="tel" class="form-control" id="cardExpiry" placeholder="MM / YY" maxlength="5" required />
                             </div>
                         </div>
                         <div class="col-xs-5 col-md-5 pull-right">
                             <div class="form-group">
                                 <label for="cardCVC">CV CODE</label>
-                                <input type="tel" class="form-control" id="cardCVC" placeholder="CVC" autocomplete="cc-csc" required />
+                                <input type="tel" class="form-control" id="cardCVC" placeholder="CVC" autocomplete="cc-csc" maxlength="3" required />
                             </div>
                         </div>
                     </div>
