@@ -445,9 +445,10 @@ namespace HomeIS.Controllers
             return View("UsersMoneySpent", users);
         }
 
-        public JsonResult MoneySpentPerCity(string CityName)
+        [Authorize(Roles = "Admin")]
+        public ActionResult MoneySpentPerCity(string CityName)
         {
-            var QuerySet = db.Apartments.Join(db.Transactions,
+            Dictionary<string, int> cities = db.Apartments.Join(db.Transactions,
                 apt => apt.ID,
                 trns => trns.ApartmentID,
                 (apt, trns) => new
@@ -456,9 +457,10 @@ namespace HomeIS.Controllers
                     price = trns.BuyingPrice
                 })
                 .GroupBy(p => p.city)
-                .Select(r => new { City = r.Key, Sum = r.Sum(e => e.price) });
+                .Select(r => new { City = r.Key, Sum = r.Sum(e => e.price) })
+                .ToDictionary(s => s.City, s => s.Sum);
 
-            return Json(QuerySet, JsonRequestBehavior.AllowGet);
+            return View("MoneySpentPerCity", cities);
         }
 
         #region Helpers
