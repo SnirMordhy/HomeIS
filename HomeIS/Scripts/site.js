@@ -162,7 +162,7 @@ function updateApartmentList(data) {
                 + '                </div>'
                 + '            </div>'
                 + '        </div>'
-                + '        <button type="submit" data-apartmentid=' + index + ' class= "btn btn-success buyProperty">Buy Now!</button>'
+                + '        <div class="buy-button-div"><button type="submit" data-apartmentid=' + index + ' class= "btn btn-success buyProperty">Buy Now!</button><div>'
                 + '        <br /><br />'
                 + '    </div>'
                 + '</div>'
