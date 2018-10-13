@@ -30,7 +30,8 @@ namespace HomeIS
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/fontawesome.css",
-                      "~/Content/bootstrapsocial.css"));
+                      "~/Content/bootstrapsocial.css",
+                      "~/Content/cool-a-tag.css"));
         }
     }
 }

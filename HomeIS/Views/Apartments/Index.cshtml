@@ -7,9 +7,14 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<br />
+<div class="cool-wrapper">
+    <span class="cool-square">
+        <a class="cool-a-tag before after" href="~/Apartments/Create">Create New</a>
+    </span>
+</div>
+<br />
+
 <table class="table">
     <tr>
         <th class="th-width-20">
@@ -27,42 +32,37 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <label>City: </label> @Html.DisplayFor(modelItem => item.Location.City)
-            <br />
-            <label>Neighborhood: </label> @Html.DisplayFor(modelItem => item.Location.Neighborhood)
-            <br />
-            <label>Address: </label> @Html.DisplayFor(modelItem => item.Location.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumberOfRooms)
-        </td>
-        <td>
-            @if(item.PhotoList != null)
-            {
-                foreach (var photo in item.PhotoList)
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <label>City: </label> @Html.DisplayFor(modelItem => item.Location.City)
+                <br />
+                <label>Neighborhood: </label> @Html.DisplayFor(modelItem => item.Location.Neighborhood)
+                <br />
+                <label>Address: </label> @Html.DisplayFor(modelItem => item.Location.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfRooms)
+            </td>
+            <td>
+                @if (item.PhotoList != null)
                 {
+                    foreach (var photo in item.PhotoList)
+                    {
                         <img class="apartment-view-image" src="@photo" />
+                    }
                 }
-            }
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.ID })
-
-            @if (Model.Single(p => p.ID == item.ID).Owner.UserName == User.Identity.Name)
-            {
-                <span> | </span>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-                <span> | </span>
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            }
-        </td>
-    </tr>
-}
+            </td>
+        </tr>
+    }
 
 </table>
