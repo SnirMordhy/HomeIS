@@ -33,26 +33,34 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Apartment.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Purchaser.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TransactionDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BuyingPrice)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apartment.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Purchaser.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuyingPrice)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<br /><br />
+<div class="cool-wrapper">
+    <span class="cool-square">
+        <a class="cool-a-tag before after" href="~/Transactions/TopSalingTable">Back To List</a>
+    </span>
+</div>

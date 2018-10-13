@@ -8,12 +8,23 @@
 <h2 class="text-center">HomeIS Top Sellers Hall Of Fame: </h2>
 <br />
 
-<div class="cool-wrapper">
-    <span class="cool-square">
-        <a class="cool-a-tag before after" href="~/Transactions/">Transactions</a>
-    </span>
+<div class="row">
+    <div class="col-md-4 cool-wrapper">
+        <span class="cool-square">
+            <a class="cool-a-tag before after" href="~/Transactions/">Transactions</a>
+        </span>
+    </div>
+    <div class="col-md-4 cool-wrapper">
+        <span class="cool-square">
+            <a class="cool-a-tag before after" href="~/Account/MoneySpentPerCity">Money Spent Per City</a>
+        </span>
+    </div>
+    <div class="col-md-4 cool-wrapper">
+        <span class="cool-square">
+            <a class="cool-a-tag before after" href="~/Account/UsersMoneySpent">User Money Spent</a>
+        </span>
+    </div>
 </div>
-
 <br />
 
 <table class="table">
@@ -55,9 +66,6 @@
         </tr>
     }
 </table>
-<br /><br />
-@Html.ActionLink("Users Money Spent", "UsersMoneySpent", "Account")
-<br />
 
 <link rel="stylesheet" href="~/Content/d3-styles.css" />
 <script src="~/Scripts/D3.min.js"></script>

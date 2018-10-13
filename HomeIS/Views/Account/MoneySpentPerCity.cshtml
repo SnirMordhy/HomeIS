@@ -1,7 +1,7 @@
-﻿@model Dictionary<HomeIS.Models.ApplicationUser, int>
+﻿@model Dictionary<string, int>
 
 @{
-    ViewBag.Title = "User Money Spent";
+    ViewBag.Title = "Money Spent Per City";
 }
 
 <h2 class="text-center">Users Money Spent:  </h2>
@@ -10,12 +10,8 @@
     <tr>
         <th>#</th>
         <th>
-            <span class="fa fa-user"></span>
+            <span class="fa fa-home"></span>
             User Name
-        </th>
-        <th>
-            <span class="fa fa-sign-in-alt"></span>
-            Additional Logins
         </th>
         <th>
             <span class="fa fa-money-bill-alt"></span>
@@ -31,10 +27,7 @@
                 @(item.index + 1)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.model.Key.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.model.Key.Logins.Count)
+                @Html.DisplayFor(modelItem => item.model.Key)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.model.Value)

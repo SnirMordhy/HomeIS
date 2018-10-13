@@ -337,6 +337,7 @@
     <Content Include="Views\Home\_TransactionModal.cshtml" />
     <Content Include="Views\Transactions\Statistics.cshtml" />
     <Content Include="Views\Account\UsersMoneySpent.cshtml" />
+    <Content Include="Views\Account\MoneySpentPerCity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
