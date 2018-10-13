@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HomeIS.Models;
+using Microsoft.ApplicationInsights.Web;
 
 namespace HomeIS.Controllers
 {
@@ -16,27 +17,24 @@ namespace HomeIS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Apartments
+        [Authorize]
         public ActionResult Index()
         {
-            if (!Request.IsAuthenticated)
-            {
-                return Redirect("/Account/Login");
-            }
-
             return View(db.Apartments.Where(ap =>
                 ap.Owner == db.Users.FirstOrDefault<ApplicationUser>(user =>
                     user.UserName == this.User.Identity.Name)));
         }
 
         // GET: Apartments/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
-            if (id == null || !Request.IsAuthenticated)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Apartment apartment = db.Apartments.SingleOrDefault(ap => (ap.ID == id) &&
+            Apartment apartment = db.Apartments.FirstOrDefault(ap => (ap.ID == id) &&
                                                                       (ap.Owner.UserName == this.User.Identity.Name));
 
             if (apartment == null)
@@ -48,13 +46,9 @@ namespace HomeIS.Controllers
         }
 
         // GET: Apartments/Create
+        [Authorize]
         public ActionResult Create()
         {
-            if (!Request.IsAuthenticated)
-            {
-                return Redirect("/Account/Login");
-            }
-
             return View(); 
         }
 
@@ -63,15 +57,11 @@ namespace HomeIS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include =
                 "ID,Owner,Location,Description,PropertyValue,PhotoList,Photos,Balcony,Size,FloorNumber,NumberOfRooms")]
             Apartment apartment)
         {
-            if (!Request.IsAuthenticated)
-            {
-                return Redirect("/Account/Login");
-            }
-
             db.Configuration.LazyLoadingEnabled = false;
 
 
@@ -90,7 +80,7 @@ namespace HomeIS.Controllers
                 }
 
                 apartment.PhotoList = PhotoList;
-                apartment.Owner = db.Users.SingleOrDefault(s => s.UserName == this.User.Identity.Name);
+                apartment.Owner = db.Users.FirstOrDefault(s => s.UserName == this.User.Identity.Name);
 
                 db.Apartments.Add(apartment);
                 db.SaveChanges();
@@ -114,16 +104,17 @@ namespace HomeIS.Controllers
         }
 
         // GET: Apartments/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             db.Configuration.LazyLoadingEnabled = false;
 
-            if (id == null || !Request.IsAuthenticated)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Apartment apartment = db.Apartments.SingleOrDefault(ap => (ap.ID == id) &&
+            Apartment apartment = db.Apartments.FirstOrDefault(ap => (ap.ID == id) &&
                                                                       (ap.Owner.UserName == this.User.Identity.Name));
 
             if (apartment == null)
@@ -175,14 +166,15 @@ namespace HomeIS.Controllers
         }
 
         // GET: Apartments/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
-            if (id == null || !Request.IsAuthenticated)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Apartment apartment = db.Apartments.SingleOrDefault(ap => (ap.ID == id) &&
+            Apartment apartment = db.Apartments.FirstOrDefault(ap => (ap.ID == id) &&
                                                                       (ap.Owner.UserName == this.User.Identity.Name));
 
             if (apartment == null)
@@ -198,7 +190,7 @@ namespace HomeIS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Apartment apartment = db.Apartments.SingleOrDefault(ap => (ap.ID == id) &&
+            Apartment apartment = db.Apartments.FirstOrDefault(ap => (ap.ID == id) &&
                                                                       (ap.Owner.UserName == this.User.Identity.Name));
 
             if (apartment != null)
