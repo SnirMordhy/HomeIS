@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using HomeIS.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 
 namespace HomeIS.Controllers
 {
@@ -430,18 +431,32 @@ namespace HomeIS.Controllers
             base.Dispose(disposing);
         }
 
-        public JsonResult UsersWithSumMoneySpent(string CityName)
-        { 
-            var QuerySet = db.Users.Join(db.Transactions,
-                usr => usr.UserName,
-                trns => trns.Purchaser.UserName,
-                (usr, trns) => new
+        [Authorize(Roles = "Admin")]
+        public ActionResult UsersMoneySpent(string CityName)
+        {
+            Dictionary<ApplicationUser, int> users = db.Users.Join(db.Transactions,
+                        usr => usr.UserName,
+                        trns => trns.Purchaser.UserName,
+                        (usr, trns) => new { AppUser = usr, TransactionPrice = trns.BuyingPrice })
+                        .GroupBy(p => p.AppUser)
+                        .Select(r => new { User = r.Key, Sum = r.Sum(e => e.TransactionPrice) })
+                        .ToDictionary(s => s.User, s => s.Sum);
+
+            return View("UsersMoneySpent", users);
+        }
+
+        public JsonResult MoneySpentPerCity(string CityName)
+        {
+            var QuerySet = db.Apartments.Join(db.Transactions,
+                apt => apt.ID,
+                trns => trns.ApartmentID,
+                (apt, trns) => new
                 {
-                    AppUser = usr,
-                    TransactionPrice = trns.BuyingPrice
+                    city = apt.Location.City,
+                    price = trns.BuyingPrice
                 })
-                .GroupBy(p => p.AppUser)
-                .Select(r => new { User = r.Key, Sum = r.Sum(e => e.TransactionPrice) });
+                .GroupBy(p => p.city)
+                .Select(r => new { City = r.Key, Sum = r.Sum(e => e.price) });
 
             return Json(QuerySet, JsonRequestBehavior.AllowGet);
         }
