@@ -1,0 +1,44 @@
+﻿@model Dictionary<HomeIS.Models.ApplicationUser, int>
+
+@{
+    ViewBag.Title = "Statistics";
+}
+
+<h2 class="text-center">Users Money Spent:  </h2>
+<br />
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>
+            <span class="fa fa-user"></span>
+            User Name
+        </th>
+        <th>
+            <span class="fa fa-sign-in-alt"></span>
+            Additional Logins
+        </th>
+        <th>
+            <span class="fa fa-money-bill-alt"></span>
+            Spent money
+        </th>
+        <th></th>
+    </tr>
+    <!-- foreach statment that uses modal & index as well -->
+    @foreach (var item in Model.Select((model, index) => new { model, index }))
+    {
+    <tr>
+        <td>
+            @(item.index + 1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.model.Key.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.model.Key.Logins.Count)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.model.Value)
+        </td>
+    </tr>
+    }
+</table>
