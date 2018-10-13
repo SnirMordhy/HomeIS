@@ -58,15 +58,9 @@
                 }
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.ID })
-
-                @if (Model.Single(p => p.ID == item.ID).Owner.UserName == User.Identity.Name)
-                {
-                    <span> | </span>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-                    <span> | </span>
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                }
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
             </td>
         </tr>
     }
