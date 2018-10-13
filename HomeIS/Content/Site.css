@@ -143,3 +143,36 @@ aside {
 .buy-button-div {
     text-align: center;
 }
+
+.apartment-main-view {
+    width: 120%;
+    margin-left: -10%;
+}
+
+#show-apartments {
+    margin-left:8%;
+}
+
+#balcony-filter {
+    display: inline-block; 
+    width: 9%; 
+    margin-top: 1%; 
+    float:right;
+}
+
+#show-all-filter-label {
+    max-width: 90%; 
+    padding-top: 8px
+}
+
+#show-all-filter {
+    display: inline-block; 
+    width: 9%; 
+    float:right; 
+    margin-top: 1%;
+}
+
+#balcony-filter-label {
+    max-width: 90%; 
+    padding-top: 8px;
+}
