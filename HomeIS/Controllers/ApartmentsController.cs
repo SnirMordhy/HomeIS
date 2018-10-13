@@ -95,6 +95,7 @@ namespace HomeIS.Controllers
         {
             string relativePath = "UserPhotos/" + this.User.Identity.Name.Replace("@", "------");
             string absolutePath = AppDomain.CurrentDomain.BaseDirectory + relativePath;
+
             Directory.CreateDirectory(absolutePath);
 
             string filename = DateTime.Now.ToFileTime() + (new Random().Next()).ToString() +
@@ -137,8 +138,6 @@ namespace HomeIS.Controllers
         {
             if (ModelState.IsValid)
             {
-                string baseFolder = "UserPhotos/" + this.User.Identity.Name.Replace("@", "------");
-
                 for (int uploadID = 0; uploadID < Request.Files.Count; uploadID++)
                 {
                     var uploadedFile = Request.Files[uploadID];
@@ -149,14 +148,8 @@ namespace HomeIS.Controllers
                     }
                 }
 
-                foreach (string file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + baseFolder))
-                {
-                    if (!apartment.PhotoList.Contains(baseFolder + "/" + Path.GetFileName(file)))
-                    {
-                        System.IO.File.Delete(file);
-                    }
-                }
-
+                // Compare and delete all the photos from the folder
+                CompareAndDeletePhotos(apartment);
 
                 db.Entry(apartment).State = EntityState.Modified;
                 db.SaveChanges();
@@ -164,6 +157,26 @@ namespace HomeIS.Controllers
             }
 
             return View(apartment);
+        }
+
+        private void CompareAndDeletePhotos(Apartment apartment)
+        {
+            // Get the current db value
+            string dbApartmentPhotoList =
+                db.Apartments.Where(ap => ap.ID == apartment.ID).Select(ap => ap.Photos).ToList()[0];
+
+            if (!String.IsNullOrEmpty(dbApartmentPhotoList))
+            {
+                foreach (string photo in dbApartmentPhotoList.Split(','))
+                {
+                    string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, photo);
+
+                    if (!apartment.PhotoList.Contains(photo) && System.IO.File.Exists(filePath))
+                    {
+                        System.IO.File.Delete(filePath);
+                    }
+                }
+            }
         }
 
         // GET: Apartments/Delete/5
