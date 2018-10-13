@@ -27,7 +27,27 @@ function donut(data) {
         radius = Math.min(width, height) / 2;
 
     var color = d3.scale.ordinal()
-        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+        .range(["#98abc5",
+                "#8a89a6", 
+                "#7b6888",
+                "#a05d56",
+                "#d0743c",
+                "#ff8c00",
+                "#fffc00",
+                "#fc9b14",
+                "#6dabd5",
+                "#57649b",
+                "#ffffff",
+                "#006e3c",
+                "#0091c9",
+                "#f58220",
+                "#f15a22",
+                "#ed1c24",
+                "#00a9db",
+                "#26ebfb",
+                "#0003a5",
+                "#5e8ef4",
+                "#b0e2f0"]);
 
     var arc = d3.svg.arc()
         .outerRadius(radius - 10)
