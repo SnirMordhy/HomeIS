@@ -13,39 +13,41 @@
 </header>
 
 <div class="apartment-main-view">
-    <div class="col-sm-2">
-        <form id="apartment-filter-form">
-            <div class="form-group">
-                <br />
-                <label for="recipient-name" class="col-form-label" id="show-all-filter-label">Show All Apartments</label>
-                <input type="checkbox" class="form-control" id="show-all-filter" checked="checked" onchange="showAllAptCheckbox(this)">
-                <br />
-                <br />
+    <div class="row">
+        <div class="col-sm-2">
+            <form id="apartment-filter-form">
+                <div class="form-group">
+                    <br/>
+                    <label for="recipient-name" class="col-form-label" id="show-all-filter-label">Show All Apartments</label>
+                    <input type="checkbox" class="form-control" id="show-all-filter" checked="checked" onchange="showAllAptCheckbox(this)">
+                    <br/>
+                    <br/>
+                </div>
+                <hr/>
+                <div class="form-group">
+                    <br/>
+                    <label for="recipient-name" class="col-form-label">Minimum Price</label>
+                    <input type="number" min="" placeholder="" class="form-control" id="min-price-filter" disabled="disabled">
+                    <br/>
+                    <label for="recipient-name" class="col-form-label">Maximum Price</label>
+                    <input type="number" min="" placeholder="" class="form-control" id="max-price-filter" disabled="disabled"/>
+                    <br/>
+                    <label for="recipient-name" class="col-form-label">Size</label>
+                    <input type="number" min="" placeholder="" class="form-control" id="size-filter" disabled="disabled">
+                    <br/>
+                    <label for="recipient-name" class="col-form-label" id="balcony-filter-label">Balcony</label>
+                    <input type="checkbox" class="form-control" id="balcony-filter" disabled="disabled">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <button type="submit" class="btn btn-primary" id="submit-apartment-filter" disabled="disabled">APPLY</button>
+                    <button type="reset" class="btn btn-secondary" data-dismiss="modal" id="reset-apartment-filter" disabled="disabled">RESET</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-9" id="show-apartments">
+            <div class="row" id="apartment-grid">
             </div>
-            <hr />
-            <div class="form-group">
-                <br />
-                <label for="recipient-name" class="col-form-label">Minimum Price</label>
-                <input type="number" min="" placeholder="" class="form-control" id="min-price-filter" disabled="disabled">
-                <br />
-                <label for="recipient-name" class="col-form-label">Maximum Price</label>
-                <input type="number" min="" placeholder="" class="form-control" id="max-price-filter" disabled="disabled" />
-                <br />
-                <label for="recipient-name" class="col-form-label">Size</label>
-                <input type="number" min="" placeholder="" class="form-control" id="size-filter" disabled="disabled">
-                <br />
-                <label for="recipient-name" class="col-form-label" id="balcony-filter-label">Balcony</label>
-                <input type="checkbox" class="form-control" id="balcony-filter" disabled="disabled">
-                <br />
-                <br />
-                <br />
-                <button type="submit" class="btn btn-primary" id="submit-apartment-filter" disabled="disabled">APPLY</button>
-                <button type="reset" class="btn btn-secondary" data-dismiss="modal" id="reset-apartment-filter" disabled="disabled">RESET</button>
-            </div>
-        </form>
-    </div>
-    <div class="col-sm-9" id="show-apartments">
-        <div class="row" id="apartment-grid">
         </div>
     </div>
 </div>
