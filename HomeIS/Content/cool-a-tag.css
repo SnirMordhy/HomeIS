@@ -1,0 +1,81 @@
+﻿.cool-a-tag, .cool-a-tag:visited, .cool-a-tag:hover, .cool-a-tag:active {
+    text-decoration: none;
+    color: #81b3d2;
+}
+
+    .cool-a-tag:hover {
+        color: #337ab7;
+    }
+
+    .cool-a-tag.before:before, .cool-a-tag.after:after {
+        content: "";
+        position: absolute;
+    }
+
+    .cool-a-tag.before:before {
+        top: -0.25em;
+    }
+
+    .cool-a-tag.after:after {
+        bottom: -0.25em;
+    }
+
+    .cool-a-tag.before:before, .cool-a-tag.after:after {
+        height: 0.35rem;
+        width: 0;
+        background: #337ab7;
+    }
+
+    .cool-a-tag.before:hover:before, .cool-a-tag.after:hover:after {
+        width: 100%;
+    }
+
+.cool-square {
+    position: relative;
+    font-size: 1.5em;
+}
+
+    .cool-square .cool-a-tag {
+        padding: 0.2em 0.4em;
+    }
+
+    .cool-square:before, .cool-square:after {
+        content: "";
+        transition: 0.25s all ease;
+        position: absolute;
+        width: 5px;
+        width: 0.35rem;
+        height: 0;
+        background: #337ab7;
+    }
+
+    .cool-square:before {
+        bottom: -0.2em;
+    }
+
+    .cool-square:after {
+        right: 0;
+        top: -0.2em;
+    }
+
+    .cool-square .cool-a-tag:before {
+        left: 0;
+        transition: 0.25s all ease;
+    }
+
+    .cool-square .cool-a-tag:after {
+        right: 0;
+        transition: 0.25s all ease;
+    }
+
+    .cool-square.individual .cool-a-tag:after {
+        transition: 0.25s all ease 0.4s;
+    }
+
+    .cool-square:hover:before, .cool-square:hover:after {
+        height: calc(100% + 0.4em);
+    }
+
+    .cool-square:hover #cool-a-tag:before, .cool-square:hover .cool-a-tag:after {
+        width: 100%;
+    }
