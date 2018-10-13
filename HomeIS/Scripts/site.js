@@ -208,15 +208,24 @@ function updateTransactionModalData(apartmentData) {
                 $('#alertTransError').prop('hidden', true);
                 setTimeout(function () {
                     $('#transaction-modal').modal('hide');
+                    $('#alertTransSuccess').prop('hidden', true);
                 }, 3000);
             })
             .fail(function (error) {
-
+                if (error.status == 403) {
+                    $('#alertTransError').text("just login/register and continue the purchase right away!");
+                }
                 if (error.status == 409) {
-                    $('#alertTransError').text("דירה זו שייכת לך בטאבו, אנא בחר דירה אחרת");
+                    $('#alertTransError').text("you own this house! purchase another one if you can...");
                 }
                 $('#alertTransError').prop('hidden', false);
                 $('#alertTransSuccess').prop('hidden', true);
+            })
+            .always(function () {
+                setTimeout(function () {
+                    $('#alertTransError').prop('hidden', true);
+                    clearTesxtData();
+                }, 4000);
             })
     });
 
@@ -231,6 +240,12 @@ function isCheckAllowed() {
     }
 }
 
+function clearTesxtData() {
+    $('#transactionPayment').val("");
+    $('#cardNumber').val("");
+    $('#cardExpiry').val("");
+    $('#cardCVC').val("");
+}
 function getAllApartmentsJSON() {
     $.ajax({
         dataType: "json",

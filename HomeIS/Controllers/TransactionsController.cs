@@ -84,7 +84,11 @@ namespace HomeIS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            if(currentUser==null || apartmentForSale.Owner.Id == currentUser.Id)
+            if (currentUser == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+            if(apartmentForSale.Owner.Id == currentUser.Id)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Conflict);
             }
