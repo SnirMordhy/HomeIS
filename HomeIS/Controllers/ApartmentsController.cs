@@ -236,10 +236,8 @@ namespace HomeIS.Controllers
 
         public JsonResult ApartmentCountGroupJSON()
         {
-            var apartments = from ap in db.Apartments
-                group ap by ap.Location.City
-                into ApartmentGroup
-                select new {City = ApartmentGroup.Key, Count = ApartmentGroup.Count()};
+            var apartments = db.Apartments.GroupBy(ap => ap.Location.City)
+                                          .Select(ap => new {City = ap.Key, Count = ap.Count()});
 
             return Json(apartments, JsonRequestBehavior.AllowGet);
         }
