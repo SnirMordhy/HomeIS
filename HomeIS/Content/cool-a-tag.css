@@ -1,6 +1,4 @@
-﻿@import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
-.cool-a-tag, .cool-a-tag:visited, .cool-a-tag:hover, .cool-a-tag:active {
+﻿.cool-a-tag, .cool-a-tag:visited, .cool-a-tag:hover, .cool-a-tag:active {
     text-decoration: none;
     color: #81b3d2;
 }
