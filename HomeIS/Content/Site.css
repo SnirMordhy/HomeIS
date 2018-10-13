@@ -114,6 +114,11 @@ color: #ffffff;
     width: 15%;
 }
 
+
+#predict-label {
+    margin-left: 10px;
+}
+
 video, video:hover {
     border-radius: 100px;
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -216,6 +217,29 @@ namespace HomeIS.Controllers
                 Select(g => new { count = g.Count() }).ToList();
 
             return Json(QuerySet, JsonRequestBehavior.AllowGet);
+        }
+
+        public bool PredictApartmentSale(int size, int value, int floor)
+        {
+
+            var proc = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = System.AppDomain.CurrentDomain.BaseDirectory + @"..\debug\ML.exe",
+                    Arguments = size.ToString() +" "+ value.ToString() +" "+ floor.ToString(),
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = false
+                }
+            };
+
+            proc.Start();
+            proc.WaitForExit();
+            string output = proc.StandardOutput.ReadToEnd();
+            bool returnBool = output.TrimEnd() == "True";
+            
+            return returnBool;
         }
     }
 }

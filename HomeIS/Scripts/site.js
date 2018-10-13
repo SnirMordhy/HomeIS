@@ -61,6 +61,26 @@
 
 function updateModalData(apartment) {
 
+    $.get("/Apartments/PredictApartmentSale",
+        {
+            "size": apartment.Size,
+            "value": apartment.PropertyValue,
+            "floor": apartment.FloorNumber
+        },
+        function(data) {
+            if (data === "True") {
+
+                $("#predict-label")[0].className = "label label-success";
+                $("#predict-label")[0].innerText = "Predicted to be sold!";
+
+            } else {
+
+                $("#predict-label")[0].className = "label label-danger";
+                $("#predict-label")[0].innerText = "Not predicted to be sold";
+            }
+        }
+    );
+
     $('.carousel-indicators').empty();
     $('.carousel-inner').empty();
     $('.modal-caption').empty();
@@ -72,7 +92,7 @@ function updateModalData(apartment) {
     });
 
     $('.modal-caption').append(
-        '            <h4 class="thumbnail-caption-header">' + apartment.Location.City + ', <small>' + apartment.Location.Neighborhood + '</small></h4>'
+        '            <h4 class="thumbnail-caption-header">' + apartment.Location.City + ', <small>' + apartment.Location.Neighborhood + '</small><span id="predict-label" class="label label-default">Checking...</span></h4>'
         + '            <div class="row">'
         + '                <div class="col-md-6">'
         + '                    <ul class="list-group">'
