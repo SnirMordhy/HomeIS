@@ -431,11 +431,8 @@ namespace HomeIS.Controllers
         }
 
         public JsonResult UsersWithSumMoneySpent(string CityName)
-        {
-            var AllUsers = db.Users;
-            var AllTransactions = db.Transactions;
-
-            var QuerySet = AllUsers.Join(AllTransactions,
+        { 
+            var QuerySet = db.Users.Join(db.Transactions,
                 usr => usr.UserName,
                 trns => trns.Purchaser.UserName,
                 (usr, trns) => new
