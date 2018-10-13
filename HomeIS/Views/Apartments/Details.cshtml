@@ -87,7 +87,17 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div>
+    <div class="cool-wrapper" style="float: left;">
+        <span class="cool-square">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "cool-a-tag before after" })
+        </span>
+    </div>
+
+    <div class="cool-wrapper" style="margin-left: 30%;">
+        <span class="cool-square">
+            <a class="cool-a-tag before after" href="~/Apartments/">Back to List</a>
+        </span>
+    </div>
+</div>
