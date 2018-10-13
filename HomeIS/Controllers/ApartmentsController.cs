@@ -9,6 +9,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HomeIS.Models;
+using Microsoft.ApplicationInsights.Web;
 
 namespace HomeIS.Controllers
 {
@@ -17,36 +18,39 @@ namespace HomeIS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Apartments
+        [Authorize]
         public ActionResult Index()
         {
-            if (!Request.IsAuthenticated)
-            {
-                return Redirect("/Account/Login");
-            }
-
-            return View(db.Apartments.Where(ap => ap.Owner == db.Users.FirstOrDefault<ApplicationUser>(user => user.UserName == this.User.Identity.Name)));
-            
+            return View(db.Apartments.Where(ap =>
+                ap.Owner == db.Users.FirstOrDefault<ApplicationUser>(user =>
+                    user.UserName == this.User.Identity.Name)));
         }
 
         // GET: Apartments/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Apartment apartment = db.Apartments.Find(id);
+
+            Apartment apartment = db.Apartments.FirstOrDefault(ap => (ap.ID == id) &&
+                                                                      (ap.Owner.UserName == this.User.Identity.Name));
+
             if (apartment == null)
             {
                 return HttpNotFound();
             }
+
             return View(apartment);
         }
 
         // GET: Apartments/Create
+        [Authorize]
         public ActionResult Create()
         {
-            return View();
+            return View(); 
         }
 
         // POST: Apartments/Create
@@ -54,8 +58,14 @@ namespace HomeIS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Owner,Location,Description,PropertyValue,PhotoList,Photos,Balcony,Size,FloorNumber,NumberOfRooms")] Apartment apartment)
+        [Authorize]
+        public ActionResult Create([Bind(Include =
+                "ID,Owner,Location,Description,PropertyValue,PhotoList,Photos,Balcony,Size,FloorNumber,NumberOfRooms")]
+            Apartment apartment)
         {
+            db.Configuration.LazyLoadingEnabled = false;
+
+
             List<string> PhotoList = new List<string>();
 
             if (ModelState.IsValid && Request.Files.Count > 0)
@@ -71,7 +81,7 @@ namespace HomeIS.Controllers
                 }
 
                 apartment.PhotoList = PhotoList;
-                apartment.Owner = db.Users.SingleOrDefault(s => s.Email == this.User.Identity.Name);
+                apartment.Owner = db.Users.FirstOrDefault(s => s.UserName == this.User.Identity.Name);
 
                 db.Apartments.Add(apartment);
                 db.SaveChanges();
@@ -87,24 +97,32 @@ namespace HomeIS.Controllers
             string absolutePath = AppDomain.CurrentDomain.BaseDirectory + relativePath;
             Directory.CreateDirectory(absolutePath);
 
-            string filename = DateTime.Now.ToFileTime() + (new Random().Next()).ToString() + Path.GetExtension(uploadedFile.FileName);
+            string filename = DateTime.Now.ToFileTime() + (new Random().Next()).ToString() +
+                              Path.GetExtension(uploadedFile.FileName);
             uploadedFile.SaveAs(Path.Combine(absolutePath, filename));
 
             return relativePath + '/' + filename;
         }
 
         // GET: Apartments/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
+            db.Configuration.LazyLoadingEnabled = false;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Apartment apartment = db.Apartments.Find(id);
+
+            Apartment apartment = db.Apartments.FirstOrDefault(ap => (ap.ID == id) &&
+                                                                      (ap.Owner.UserName == this.User.Identity.Name));
+
             if (apartment == null)
             {
                 return HttpNotFound();
             }
+
             return View(apartment);
         }
 
@@ -113,7 +131,9 @@ namespace HomeIS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Owner,Location,Description,PropertyValue,PhotoList,Photos,Balcony,Size,FloorNumber,NumberOfRooms")] Apartment apartment)
+        public ActionResult Edit([Bind(Include =
+                "ID,Owner,Location,Description,PropertyValue,PhotoList,Photos,Balcony,Size,FloorNumber,NumberOfRooms")]
+            Apartment apartment)
         {
             if (ModelState.IsValid)
             {
@@ -136,27 +156,33 @@ namespace HomeIS.Controllers
                         System.IO.File.Delete(file);
                     }
                 }
-                
+
 
                 db.Entry(apartment).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             return View(apartment);
         }
 
         // GET: Apartments/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Apartment apartment = db.Apartments.Find(id);
+
+            Apartment apartment = db.Apartments.FirstOrDefault(ap => (ap.ID == id) &&
+                                                                      (ap.Owner.UserName == this.User.Identity.Name));
+
             if (apartment == null)
             {
                 return HttpNotFound();
             }
+
             return View(apartment);
         }
 
@@ -165,12 +191,17 @@ namespace HomeIS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Apartment apartment = db.Apartments.Find(id);
+            Apartment apartment = db.Apartments.FirstOrDefault(ap => (ap.ID == id) &&
+                                                                      (ap.Owner.UserName == this.User.Identity.Name));
 
-            apartment.PhotoList.ForEach(photo => System.IO.File.Delete(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, photo)));
+            if (apartment != null)
+            {
+                apartment.PhotoList.ForEach(photo => System.IO.File.Delete(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, photo)));
 
-            db.Apartments.Remove(apartment);
-            db.SaveChanges();
+                db.Apartments.Remove(apartment);
+                db.SaveChanges();
+            }
+
             return RedirectToAction("Index");
         }
 
@@ -180,6 +211,7 @@ namespace HomeIS.Controllers
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
@@ -192,29 +224,32 @@ namespace HomeIS.Controllers
         public JsonResult ApartmentCountGroupJSON()
         {
             var apartments = from ap in db.Apartments
-                group ap by ap.Location.City into ApartmentGroup
-                select new { City = ApartmentGroup.Key, Count = ApartmentGroup.Count() };
+                group ap by ap.Location.City
+                into ApartmentGroup
+                select new {City = ApartmentGroup.Key, Count = ApartmentGroup.Count()};
 
             return Json(apartments, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult SizeBalconyMinOrMaxPriceJSON(int Size, bool Balcony, int MinimumPrice)
         {
-            return Json(db.Apartments.Include(t => t.Owner).Where(p => p.Balcony == Balcony && p.Size == Size && 
-                p.PropertyValue >= MinimumPrice).ToList(), JsonRequestBehavior.AllowGet);
+            return Json(db.Apartments.Include(t => t.Owner).Where(p => p.Balcony == Balcony && p.Size == Size &&
+                                                                       p.PropertyValue >= MinimumPrice).ToList(),
+                JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult SizeBalconyPriceRangeJSON(int Size, bool Balcony, int MinimumPrice, int MaximumPrice)
         {
             var QuerySet = db.Apartments.Include(t => t.Owner).Where(p => p.Balcony == Balcony && p.Size == Size &&
-                    p.PropertyValue >= MinimumPrice && p.PropertyValue <= MaximumPrice).ToList();
+                                                                          p.PropertyValue >= MinimumPrice &&
+                                                                          p.PropertyValue <= MaximumPrice).ToList();
             return Json(QuerySet, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult AmountPerCity(string CityName)
         {
-            var QuerySet = db.Apartments.Where(t => t.Location.City == CityName).GroupBy(p => p.Location.City).
-                Select(g => new { count = g.Count() }).ToList();
+            var QuerySet = db.Apartments.Where(t => t.Location.City == CityName).GroupBy(p => p.Location.City)
+                .Select(g => new {count = g.Count()}).ToList();
 
             return Json(QuerySet, JsonRequestBehavior.AllowGet);
         }
