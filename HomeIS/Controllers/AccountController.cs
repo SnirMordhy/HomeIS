@@ -159,8 +159,8 @@ namespace HomeIS.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    await UserManager.AddToRoleAsync(user.Id, model.UserRoles);                    
+                    await UserManager.AddToRoleAsync(user.Id, model.UserRoles);
+                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);                   
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -428,6 +428,22 @@ namespace HomeIS.Controllers
             }
 
             base.Dispose(disposing);
+        }
+
+        public JsonResult UsersWithSumMoneySpent(string CityName)
+        { 
+            var QuerySet = db.Users.Join(db.Transactions,
+                usr => usr.UserName,
+                trns => trns.Purchaser.UserName,
+                (usr, trns) => new
+                {
+                    AppUser = usr,
+                    TransactionPrice = trns.BuyingPrice
+                })
+                .GroupBy(p => p.AppUser)
+                .Select(r => new { User = r.Key, Sum = r.Sum(e => e.TransactionPrice) });
+
+            return Json(QuerySet, JsonRequestBehavior.AllowGet);
         }
 
         #region Helpers

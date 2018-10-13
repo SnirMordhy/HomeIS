@@ -9,32 +9,15 @@
     coinsExchangeOptions.Add("JPY", "/Content/Images/japan_ico.png");
 }
 
-<h2 class="text-center">שירות המרת מטבעות</h2>
-<div class="text-right">
-    <p>לנוחיותכם, ריכזנו עבורכם שירות להמרת שערי מטבעות</p>
-    <p><strong>אנו עושים הכל, כדי שתעו מה המחיר השווה ביותר, מבלי להתבלבל</strong></p>
+<h2 class="text-center">Conins Excahnge Free Service</h2>
+<div class="text-left">
+    <p>For your own convenience, we offer this free currency rate exchange service</p>
+    <p><strong>We do our best to give you the best buying experience</strong></p>
     <br /><br />
 </div>
 <div class="row">
-
-    <div class="col-md-3">
-        <input type="submit" id="exchangeCoinsFormat" class="btn btn-primary" value="בצע המרה" disabled="disabled" />
-    </div>
-
     <div class="dropdown col-md-3">
-        <div class="dropdown-toggle" data-toggle="dropdown" role="menu" aria-haspopup="true" aria-expanded="false"><span id="to-exchange-coin-value">בחר מטבע להמרה</span><span class="caret"></span></div>
-        <ul class="dropdown-menu" id="to-exchange-coin">
-            @foreach (KeyValuePair<string, string> option in coinsExchangeOptions)
-            {
-                <li><a href="#">@option.Key<img src="@(option.Value)" /></a></li>
-            }
-        </ul>
-    </div>
-
-    <div class="col-md-3"><i class="fa fa-2x fa-arrow-left"></i></div>
-
-    <div class="dropdown col-md-3">
-        <div class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="from-exchange-coin-value">בחר מטבע קיים</span><span class="caret"></span></div>
+        <div class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="from-exchange-coin-value">your coin</span><span class="caret"></span></div>
         <ul class="dropdown-menu" id="from-exchange-coin">
             @foreach (KeyValuePair<string, string> option in coinsExchangeOptions)
             {
@@ -43,11 +26,28 @@
         </ul>
     </div>
 
+    <div class="col-md-3"><i class="fa fa-2x fa-arrow-right"></i></div>
+
+    <div class="dropdown col-md-3">
+        <div class="dropdown-toggle" data-toggle="dropdown" role="menu" aria-haspopup="true" aria-expanded="false"><span id="to-exchange-coin-value">coin for exhange</span><span class="caret"></span></div>
+        <ul class="dropdown-menu" id="to-exchange-coin">
+            @foreach (KeyValuePair<string, string> option in coinsExchangeOptions)
+            {
+                <li><a href="#">@option.Key<img src="@(option.Value)" /></a></li>
+            }
+        </ul>
+    </div>
+
+    <div class="col-md-3">
+        <input type="submit" id="exchangeCoinsFormat" class="btn btn-primary" value="Convert" disabled="disabled" />
+    </div>
+
+
 </div>
 <br /><br />
-<div class="alert alert-success text-right" id="exchangeAnswerAlert" role="alert" hidden="hidden">
-    <strong id="exchangeAnswer"></strong> :שער ההמרה הוא
-</div>
+      <div class="alert alert-success text-left" id="exchangeAnswerAlert" role="alert" hidden="hidden">
+          Currency rate is: <strong id="exchangeAnswer"></strong>
+      </div>
 <br /><br />
 
 <script src="~/Scripts/coins-exchange-service.js" type="text/javascript"></script>

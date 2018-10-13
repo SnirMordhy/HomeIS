@@ -61,6 +61,26 @@
 
 function updateModalData(apartment) {
 
+    $.get("/Apartments/PredictApartmentSale",
+        {
+            "size": apartment.Size,
+            "value": apartment.PropertyValue,
+            "floor": apartment.FloorNumber
+        },
+        function(data) {
+            if (data === "True") {
+
+                $("#predict-label")[0].className = "label label-success";
+                $("#predict-label")[0].innerText = "Predicted to be sold!";
+
+            } else {
+
+                $("#predict-label")[0].className = "label label-danger";
+                $("#predict-label")[0].innerText = "Not predicted to be sold";
+            }
+        }
+    );
+
     $('.carousel-indicators').empty();
     $('.carousel-inner').empty();
     $('.modal-caption').empty();
@@ -72,7 +92,7 @@ function updateModalData(apartment) {
     });
 
     $('.modal-caption').append(
-        '            <h4 class="thumbnail-caption-header">' + apartment.Location.City + ', <small>' + apartment.Location.Neighborhood + '</small></h4>'
+        '            <h4 class="thumbnail-caption-header">' + apartment.Location.City + ', <small>' + apartment.Location.Neighborhood + '</small><span id="predict-label" class="label label-default">Checking...</span></h4>'
         + '            <div class="row">'
         + '                <div class="col-md-6">'
         + '                    <ul class="list-group">'
@@ -142,7 +162,7 @@ function updateApartmentList(data) {
                 + '                </div>'
                 + '            </div>'
                 + '        </div>'
-                + '        <button type="submit" data-apartmentid=' + index + ' class= "btn btn-success buyProperty">Buy Now!</button>'
+                + '        <div class="buy-button-div"><button type="submit" data-apartmentid=' + index + ' class= "btn btn-success buyProperty">Buy Now!</button><div>'
                 + '        <br /><br />'
                 + '    </div>'
                 + '</div>'
@@ -188,15 +208,24 @@ function updateTransactionModalData(apartmentData) {
                 $('#alertTransError').prop('hidden', true);
                 setTimeout(function () {
                     $('#transaction-modal').modal('hide');
+                    $('#alertTransSuccess').prop('hidden', true);
                 }, 3000);
             })
             .fail(function (error) {
-
+                if (error.status == 403) {
+                    $('#alertTransError').text("just login/register and continue the purchase right away!");
+                }
                 if (error.status == 409) {
-                    $('#alertTransError').text("דירה זו שייכת לך בטאבו, אנא בחר דירה אחרת");
+                    $('#alertTransError').text("you own this house! purchase another one if you can...");
                 }
                 $('#alertTransError').prop('hidden', false);
                 $('#alertTransSuccess').prop('hidden', true);
+            })
+            .always(function () {
+                setTimeout(function () {
+                    $('#alertTransError').prop('hidden', true);
+                    clearTesxtData();
+                }, 4000);
             })
     });
 
@@ -211,6 +240,12 @@ function isCheckAllowed() {
     }
 }
 
+function clearTesxtData() {
+    $('#transactionPayment').val("");
+    $('#cardNumber').val("");
+    $('#cardExpiry').val("");
+    $('#cardCVC').val("");
+}
 function getAllApartmentsJSON() {
     $.ajax({
         dataType: "json",
@@ -250,4 +285,25 @@ function getSizeBalconyPriceRangeJSON() {
             updateApartmentList(data);
         }
     });
+}
+
+function showAllAptCheckbox(checkbox) {
+    if (checkbox.checked == true) {
+        document.getElementById("min-price-filter").disabled = true;
+        document.getElementById("max-price-filter").disabled = true;
+        document.getElementById("size-filter").disabled = true;
+        document.getElementById("balcony-filter").disabled = true;
+        document.getElementById("submit-apartment-filter").disabled = true;
+        document.getElementById("reset-apartment-filter").disabled = true;
+
+        getAllApartmentsJSON();
+
+    } else {
+        document.getElementById("min-price-filter").disabled = false;
+        document.getElementById("max-price-filter").disabled = false;
+        document.getElementById("size-filter").disabled = false;
+        document.getElementById("balcony-filter").disabled = false;
+        document.getElementById("submit-apartment-filter").disabled = false;
+        document.getElementById("reset-apartment-filter").disabled = false;
+    }
 }

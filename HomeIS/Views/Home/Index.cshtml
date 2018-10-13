@@ -12,14 +12,13 @@
     </div>
 </header>
 
-<div class="row" id="apartment-main-view">
-    <div class="col-sm-3" style="left:0;">
+<div class="apartment-main-view">
+    <div class="col-sm-2">
         <form id="apartment-filter-form">
             <div class="form-group">
                 <br />
-                <label for="recipient-name" class="col-form-label" style="max-width: 90%; padding-top: 8px">Show All Apartments</label>
-                <input type="checkbox" class="form-control" id="show-all-filter" 
-                       style="display: inline-block; max-width: 10%; float:right; top:-10px">
+                <label for="recipient-name" class="col-form-label" id="show-all-filter-label">Show All Apartments</label>
+                <input type="checkbox" class="form-control" id="show-all-filter" checked="checked" onchange="showAllAptCheckbox(this)">
                 <br />
                 <br />
             </div>
@@ -27,26 +26,25 @@
             <div class="form-group">
                 <br />
                 <label for="recipient-name" class="col-form-label">Minimum Price</label>
-                <input type="number" min="" placeholder="" class="form-control" id="min-price-filter">
+                <input type="number" min="" placeholder="" class="form-control" id="min-price-filter" disabled="disabled">
                 <br />
                 <label for="recipient-name" class="col-form-label">Maximum Price</label>
-                <input type="number" min="" placeholder="" class="form-control" id="max-price-filter">
+                <input type="number" min="" placeholder="" class="form-control" id="max-price-filter" disabled="disabled" />
                 <br />
                 <label for="recipient-name" class="col-form-label">Size</label>
-                <input type="number" min="" placeholder="" class="form-control" id="size-filter">
+                <input type="number" min="" placeholder="" class="form-control" id="size-filter" disabled="disabled">
                 <br />
-                <label for="recipient-name" class="col-form-label" style="max-width: 90%; padding-top: 8px">Balcony</label>
-                <input type="checkbox" class="form-control" id="balcony-filter" 
-                       style="display: inline-block; max-width: 10%; float:right">
-            </div>
-            <hr />
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary" id="submit-apartment-filter">APPLY</button>
-                <button type="reset" class="btn btn-secondary" data-dismiss="modal">RESET</button>
+                <label for="recipient-name" class="col-form-label" id="balcony-filter-label">Balcony</label>
+                <input type="checkbox" class="form-control" id="balcony-filter" disabled="disabled">
+                <br />
+                <br />
+                <br />
+                <button type="submit" class="btn btn-primary" id="submit-apartment-filter" disabled="disabled">APPLY</button>
+                <button type="reset" class="btn btn-secondary" data-dismiss="modal" id="reset-apartment-filter" disabled="disabled">RESET</button>
             </div>
         </form>
     </div>
-    <div class="col-sm-9">
+    <div class="col-sm-9" id="show-apartments">
         <div class="row" id="apartment-grid">
         </div>
     </div>
