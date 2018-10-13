@@ -21,10 +21,11 @@ namespace HomeIS.Models
 
         // Entity Framework can't save an array
         public List<string> PhotoList { get; set; }
+
         public string Photos
         {
-            get { return (PhotoList != null ? string.Join(",", PhotoList) : ""); }
-            set { PhotoList = value == null ? null : value.Split(',').ToList(); }
+            get => (PhotoList == null || PhotoList.Count <= 0 ? "" : string.Join(",", PhotoList));
+            set => PhotoList = (string.IsNullOrEmpty(value) ? new List<string>() : value.Split(',').ToList());
         }
     }
 }

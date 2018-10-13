@@ -2,6 +2,26 @@
     ViewBag.Title = "About";
 }
 <h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<h3>About HomeIS</h3>
 
-<p>Use this area to provide additional information.</p>
+<div class="row">
+    <div class="col-sm-6">
+        <p>
+            HomeIS is a small project made possible by 3 bright minds: Snir Mordehai, Sapir Nasimi, and Itai Hay. <aside> This is aside!</aside>
+            All of them are officers in the Israeli army, and the last two don't even program for a living!
+        </p>
+
+    </div>
+    <div class="col-sm-6">
+        <video width="400" controls>
+            <source src="~/Content/Videos/Bunny.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
+</div>
+
+<canvas id="canvas"></canvas>
+
+
+
+<script src="~/Scripts/canvas.js"></script>
