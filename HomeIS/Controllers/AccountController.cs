@@ -445,6 +445,22 @@ namespace HomeIS.Controllers
             return View("UsersMoneySpent", users);
         }
 
+        public JsonResult MoneySpentPerCity(string CityName)
+        {
+            var QuerySet = db.Apartments.Join(db.Transactions,
+                apt => apt.ID,
+                trns => trns.ApartmentID,
+                (apt, trns) => new
+                {
+                    city = apt.Location.City,
+                    price = trns.BuyingPrice
+                })
+                .GroupBy(p => p.city)
+                .Select(r => new { City = r.Key, Sum = r.Sum(e => e.price) });
+
+            return Json(QuerySet, JsonRequestBehavior.AllowGet);
+        }
+
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
