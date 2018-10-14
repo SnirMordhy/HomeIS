@@ -136,7 +136,7 @@ function updateApartmentList(data) {
                 + '    <a href="javascript:;"><img data-apartmentid=' + index + ' src = "' + apartment.PhotoList[0] + '" class= "apartment-image" style = "height: 200px; width: 100%; display: block;"></a> '
                 + '        <div class="caption" style="padding: 3px;">'
                 + '            <h4 class="thumbnail-caption-header">' + apartment.Location.City + ', <small>' + apartment.Location.Neighborhood + '</small></h4>'
-                + '            <div class="row">'
+                + '            <div class="row apartment-row-margin">'
                 + '                <div class="col-md-6">'
                 + '                    <ul class="list-group">'
                 + '                        <li class="list-group-item">'
