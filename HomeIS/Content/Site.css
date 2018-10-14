@@ -177,10 +177,7 @@ aside {
     padding-top: 8px;
 }
 
-.important-col-md-4 {
-    max-width: 33.33333333% !important;
-}
-
-.important-col-sm-6 {
-    max-width: 50% !important;
+.apartment-row-margin {
+    margin-right: -10px;
+    margin-left: -10px;
 }
