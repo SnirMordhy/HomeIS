@@ -178,7 +178,7 @@ aside {
 }
 
 .topper {
-    display: inline-flex;
+    display: flex;
 }
 
 .apartment-map-data {
