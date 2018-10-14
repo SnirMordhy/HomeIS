@@ -177,6 +177,16 @@ aside {
     padding-top: 8px;
 }
 
-.apartment-row-margin {
-    max-width: 100%;
+.topper {
+    display: inline-flex;
+}
+
+.apartment-map-data {
+    max-width: 50%;
+    margin: auto;
+}
+
+apartment-data-group {
+    max-width: 50%;
+    margin: auto;
 }
