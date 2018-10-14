@@ -176,3 +176,8 @@ aside {
     max-width: 90%; 
     padding-top: 8px;
 }
+
+.apartment-row-margin {
+    margin-right: -5px;
+    margin-left: -5px;
+}
