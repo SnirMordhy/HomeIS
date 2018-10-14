@@ -303,7 +303,22 @@ function showAllAptCheckbox(checkbox) {
         document.getElementById("max-price-filter").disabled = false;
         document.getElementById("size-filter").disabled = false;
         document.getElementById("balcony-filter").disabled = false;
-        document.getElementById("submit-apartment-filter").disabled = false;
+
+        if (document.getElementById("max-price-filter").value !== "" && document.getElementById("size-filter").value !== "") {
+            document.getElementById("submit-apartment-filter").disabled = false;
+        } else {
+            document.getElementById("submit-apartment-filter").disabled = true;
+        }
+
         document.getElementById("reset-apartment-filter").disabled = false;
+    }
+}
+
+function enableApply() {
+
+    if (document.getElementById("max-price-filter").value !== "" && document.getElementById("size-filter").value !== "") {
+        document.getElementById("submit-apartment-filter").disabled = false;
+    } else {
+        document.getElementById("submit-apartment-filter").disabled = true;
     }
 }
